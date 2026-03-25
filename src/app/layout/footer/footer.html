@@ -1,0 +1,21 @@
+<div class="footerWrapper">
+  <div class="mainMenuElement">
+    @for (item of menuElements; track item.link; let i = $index) {
+      <a [routerLink]="item.link">{{ item.name }}</a>
+    }
+  </div>
+  <div class="secMenuElement">
+    @for (item of secMenuElement; track item.link; let i = $index) {
+      <a [routerLink]="item.link">{{ item.name }}</a>
+    }
+  </div>
+  <div class="inforationSection"></div>
+  <div class="technicalMenu"></div>
+  <div class="copyElement">
+    <p>
+      <i class="fa-thin fa-copyright"></i> {{ year === 2026 ? year : '2026 - ' + year + '' }}
+      FORA Poligrafia
+    </p>
+    <p>Wszelkie prawa zastrzeżone</p>
+  </div>
+</div>

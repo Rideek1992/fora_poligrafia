@@ -1,0 +1,32 @@
+@use '../styles/abstracts/colors' as c;
+
+:host {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+main {
+  display: grid;
+  grid-column: 2 / -1;
+  grid-row: 1 / span 1;
+  grid-template-columns: repeat(12, 1fr);
+  background-color: c.$color-secondary;
+  color: c.$font-color-primary;
+}
+
+.menuSection {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+  background-color: c.$color-primary;
+  position: sticky;
+  top: 0;
+}
+
+.footerSection {
+  grid-column: 2 / -1;
+  grid-row: 2 / span 1;
+  background-color: c.$color-secondary;
+}

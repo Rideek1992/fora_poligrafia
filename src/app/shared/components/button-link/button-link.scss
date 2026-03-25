@@ -1,0 +1,28 @@
+@use '../styles/abstracts/colors' as c;
+
+:host {
+  justify-self: center;
+  align-self: center;
+}
+
+a {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  background-color: c.$font-color-primary;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: c.$font-color-secondary;
+  letter-spacing: 0.1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  font-weight: 600;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

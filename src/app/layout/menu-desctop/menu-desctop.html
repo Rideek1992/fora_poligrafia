@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <div (click)="goToLink('/')" class="logoElement"></div>
+  <app-button-link link="kontakt" name="kontakt"></app-button-link>
+  <div class="mottoElement">
+    <p class="mainMotto"><span>Kompleksowe</span> wsparcie dla nowoczesnych firm</p>
+    <p class="secondMotto">poligrafia, strony internetowe i rozwiązania dla biznesu</p>
+  </div>
+  <div class="menuElements">
+    @for (item of menuElements; track item.link; let i = $index) {
+      @if (item.active) {
+        <a [routerLink]="item.link">
+          <i class="{{ item.icon }}"></i>
+          <p>{{ item.name }}</p>
+        </a>
+      }
+    }
+  </div>
+  <div class="secondMenuElement">
+    @for (item of secMenuElement; track item.link; let i = $index) {
+      @if (item.active) {
+        <a [routerLink]="item.link">{{ item.name }}</a>
+      }
+    }
+  </div>
+</div>
