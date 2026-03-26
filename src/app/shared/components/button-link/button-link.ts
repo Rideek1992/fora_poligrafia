@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button-link.scss',
 })
 export class ButtonLink {
-  @Input() link: string = '';
-  @Input() name: string = '';
-  @Input() fragment: string = '';
+  @Input() link: string | undefined = '';
+  @Input() name: string | undefined = '';
+  @Input() fragment: string | undefined = '';
 }

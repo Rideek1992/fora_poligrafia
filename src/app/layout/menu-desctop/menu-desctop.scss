@@ -111,9 +111,12 @@
     text-decoration: none;
     color: c.$font-color-secondary;
     font-weight: 400;
+    transition: transform 0.2s ease-in-out;
 
     &:hover {
-      font-weight: 600;
+      transform: scale(1.08);
+      text-shadow: 0 0 1rem rgba(c.$font-color-secondary, 0.5);
+      color: c.$font-color-primary;
     }
   }
 }

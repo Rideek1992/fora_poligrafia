@@ -6,4 +6,9 @@ export const SEC_MENU: SecMenuInterface[] = [
     link: 'kontakt',
     active: true,
   },
+  {
+    name: 'Portfolio',
+    link: 'portfolio',
+    active: true,
+  },
 ];

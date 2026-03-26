@@ -1,1 +1,5 @@
-<a href="{{ link }}">{{ name }}</a>
+@if (fragment === 'lightPhoto') {
+  <a class="lightPhoto" href="{{ link }}">{{ name }}</a>
+} @else {
+  <a href="{{ link }}">{{ name }}</a>
+}

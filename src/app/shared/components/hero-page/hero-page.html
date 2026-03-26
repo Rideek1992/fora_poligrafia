@@ -1,0 +1,13 @@
+<div
+  [class.loading]="isLoading"
+  [style.background-image]="'url(' + photoAddres + heroData?.imageSection?.images?.[0]?.url + ')'"
+  class="heroSection"
+>
+  <h2>{{ heroData?.title }}</h2>
+  <p>{{ heroData?.subtitle }}</p>
+  <app-button-link
+    [link]="heroData?.primaryButton?.link"
+    [name]="heroData?.primaryButton?.text"
+    fragment="lightPhoto"
+  ></app-button-link>
+</div>

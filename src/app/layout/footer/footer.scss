@@ -17,7 +17,7 @@
 
 .copyElement {
   grid-column: 1 / -1;
-  grid-row: 2 / span 1;
+  grid-row: 3 / span 1;
   justify-self: center;
 
   p {
@@ -36,9 +36,12 @@
     color: c.$font-color-primary;
     text-decoration: none;
     font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     &:hover {
-      font-weight: 600;
+      color: c.$color-primary;
     }
   }
 }
@@ -51,4 +54,119 @@
 .mainMenuElement {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
+}
+
+.inforationSection {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 1;
+}
+
+.technicalMenu {
+  grid-column: 1 / -1;
+  grid-row: 2 / span 1;
+  padding: 3rem 0;
+  justify-self: center;
+
+  a {
+    font-size: 1.2rem;
+    color: c.$font-color-primary;
+    text-decoration: none;
+    font-weight: 400;
+
+    &:hover {
+      color: c.$color-primary;
+    }
+  }
+}
+
+.inforationElement {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
+  & > * {
+    font-size: 1.6rem;
+    color: c.$font-color-primary;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: c.$color-primary;
+    }
+  }
+
+  .companyName {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    &::before {
+      content: '\e61e';
+      font-family: 'Font Awesome 7 Pro';
+      font-size: inherit;
+      color: c.$color-primary;
+      justify-self: center;
+      align-self: center;
+    }
+  }
+
+  .mailTo {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    &::before {
+      content: '\e6de';
+      font-family: 'Font Awesome 7 Pro';
+      font-size: inherit;
+      color: c.$color-primary;
+      justify-self: center;
+      align-self: center;
+    }
+  }
+
+  .telephone {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    &::before {
+      content: '\e6e2';
+      font-family: 'Font Awesome 7 Pro';
+      font-size: inherit;
+      color: c.$color-primary;
+      justify-self: center;
+      align-self: center;
+    }
+  }
+
+  .nip {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    &::before {
+      content: '\f2c2';
+      font-family: 'Font Awesome 7 Pro';
+      font-size: inherit;
+      color: c.$color-primary;
+      justify-self: center;
+      align-self: center;
+    }
+  }
+
+  .addres {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    &::before {
+      content: '\f3c5';
+      font-family: 'Font Awesome 7 Pro';
+      font-size: inherit;
+      color: c.$color-primary;
+      justify-self: center;
+      align-self: center;
+    }
+  }
 }

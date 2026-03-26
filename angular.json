@@ -37,7 +37,7 @@
             "styles": ["src/styles/styles.scss"],
             "polyfills": ["zone.js"],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": ["src/styles/", "src/styles/layout"]
             },
             "server": "src/main.server.ts",
             "outputMode": "server",

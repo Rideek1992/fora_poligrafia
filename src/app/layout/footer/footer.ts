@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { SecMenuService } from '../../core/datacore/secondMenu/secMenu-service';
 import { RouterLink } from '@angular/router';
 import { MenuService } from '../../core/datacore/mainMenu/datamenu-service';
+import { DataTechMenuSerivce } from '../../core/datacore/technicalMenu/datatechmenu-service';
+import { InformationMenuService } from '../../core/datacore/informtionMenu/informationMenu-service';
 
 @Component({
   selector: 'app-footer',
@@ -16,4 +18,8 @@ export class Footer {
   secMenuElement = this.secMenu.getActiveSecMenuElements();
   private menuService = inject(MenuService);
   menuElements = this.menuService.getActiveMenuElements();
+  private dataTechMenu = inject(DataTechMenuSerivce);
+  dataTechMenuElement = this.dataTechMenu.getActiveMenuElements();
+  private informationMenu = inject(InformationMenuService);
+  dataInformationMenu = this.informationMenu.getActiveMenuElement();
 }

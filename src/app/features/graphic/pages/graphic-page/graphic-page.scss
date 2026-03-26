@@ -1,0 +1,12 @@
+@use '../styles/abstracts/colors' as c;
+@use 'page' as page;
+
+:host {
+  @include page.pageLayout;
+  grid-gap: 8rem;
+  margin-bottom: 6rem;
+}
+
+::ng-deep app-hero-page {
+  grid-column: 1 / -1;
+}

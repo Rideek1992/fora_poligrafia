@@ -6,11 +6,29 @@
   </div>
   <div class="secMenuElement">
     @for (item of secMenuElement; track item.link; let i = $index) {
+      <a [routerLink]="item.link"
+        ><span>{{ item.name }}</span></a
+      >
+    }
+  </div>
+  <div class="inforationSection">
+    @for (item of dataInformationMenu; track item.companyName; let i = $index) {
+      <div class="inforationElement">
+        <p class="companyName">{{ item.companyName }}</p>
+        <a class="mailTo" href="mailto:{{ item.email }}">{{ item.email }}</a>
+        <a class="telephone" href="tel:{{ item.phone }}">{{ item.phone }}</a>
+        <p class="nip">{{ item.nip }}</p>
+        <p class="addres">
+          {{ item.address.street }}, {{ item.address.zipCode }} {{ item.address.city }}
+        </p>
+      </div>
+    }
+  </div>
+  <div class="technicalMenu">
+    @for (item of dataTechMenuElement; track item.link; let i = $index) {
       <a [routerLink]="item.link">{{ item.name }}</a>
     }
   </div>
-  <div class="inforationSection"></div>
-  <div class="technicalMenu"></div>
   <div class="copyElement">
     <p>
       <i class="fa-thin fa-copyright"></i> {{ year === 2026 ? year : '2026 - ' + year + '' }}

@@ -12,9 +12,15 @@ main {
   display: grid;
   grid-column: 2 / -1;
   grid-row: 1 / span 1;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: 1fr;
   background-color: c.$color-secondary;
   color: c.$font-color-primary;
+  overflow: hidden;
+
+  //background-color: pink;
+}
+router-outlet {
+  display: contents;
 }
 
 .menuSection {
