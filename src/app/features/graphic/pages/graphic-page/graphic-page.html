@@ -1,4 +1,5 @@
 @if (isLoading) {
-  <app-hero-page [heroData]="sectionElement?.heroSection" [isLoading]="isLoading"></app-hero-page>
-  <app-buissnes-page [buissnessData]="buisnessElemnt?.businessSection"></app-buissnes-page>
+  <app-hero-page [heroData]="pageData?.heroSection" [isLoading]="isLoading"></app-hero-page>
+  <app-buissnes-page [buissnessData]="pageData?.businessSection"></app-buissnes-page>
+  <app-scope-page [scopeData]="pageData?.scopeSection"></app-scope-page>
 }

@@ -3,38 +3,29 @@ import { ApiBackendCMSService } from '../../../../core/backendCMS/apiCMS/apiBack
 import { ServicePageInterface } from '../../../../core/models/service-page-interface';
 import { HeroPage } from '../../../../shared/components/hero-page/hero-page';
 import { BuissnesPage } from '../../../../shared/components/buissnes-page/buissnes-page';
+import { ScopePage } from '../../../../shared/components/scope-page/scope-page';
 
 @Component({
   selector: 'app-graphic-page',
-  imports: [HeroPage, BuissnesPage],
+  imports: [HeroPage, BuissnesPage, ScopePage],
   templateUrl: './graphic-page.html',
   styleUrl: './graphic-page.scss',
 })
 export class GraphicPage implements OnInit {
-  sectionElement: ServicePageInterface | null = null;
-  buisnessElemnt: ServicePageInterface | null = null;
   isLoading = false;
+  pageData: ServicePageInterface | null = null;
 
   constructor(private api: ApiBackendCMSService) {}
 
   ngOnInit(): void {
-    this.api.getHeroPages('projekty-graficzne').subscribe({
+    this.api.getPageData('projekty-graficzne').subscribe({
       next: (item) => {
-        this.sectionElement = item;
+        this.pageData = item;
         this.isLoading = true;
       },
       error: (err) => {
         console.log(err);
         this.isLoading = false;
-      },
-    });
-
-    this.api.getBusinnesPages('projekty-graficzne').subscribe({
-      next: (item) => {
-        this.buisnessElemnt = item;
-      },
-      error: (err) => {
-        console.log(err);
       },
     });
   }

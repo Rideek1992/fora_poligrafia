@@ -3,3 +3,23 @@
   grid-template-columns: repeat(12, 1fr);
   grid-column: 1 / -1;
 }
+
+@mixin sizeH2 {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+@mixin sizeH3 {
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+@mixin sizeP {
+  font-size: 1.8rem;
+  font-weight: 100;
+}
+
+@mixin sizePsmall {
+  font-size: 1.6rem;
+  font-weight: 100;
+}

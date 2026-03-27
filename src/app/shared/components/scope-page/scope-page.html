@@ -1,0 +1,25 @@
+<div class="wrapperScope">
+  <div class="introSection">
+    <h2>{{ scopeData?.title }}</h2>
+    <p>{{ scopeData?.description }}</p>
+  </div>
+  <div class="itemsSection">
+    @for (item of scopeData?.items; track item.title; let i = $index) {
+      <div class="scopeItem">
+        <div class="information">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.mainDescription }}</p>
+          <div class="markdownWrapper">
+            <markdown [data]="item.listElements"></markdown>
+          </div>
+          <p>{{ item.secondDescription }}</p>
+        </div>
+        <img
+          [alt]="item.title"
+          [class.rightElement]="i % 2 === 0"
+          [src]="photoAddres + item.image?.url"
+        />
+      </div>
+    }
+  </div>
+</div>

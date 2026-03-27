@@ -1,0 +1,93 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+
+:host {
+  grid-column: 1 / -1;
+}
+
+.wrapperScope {
+  @include page.pageLayout;
+  grid-gap: 4rem;
+}
+
+.introSection {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
+  h2 {
+    @include page.sizeH2;
+    justify-self: center;
+  }
+
+  p {
+    @include page.sizeP;
+  }
+}
+
+.itemsSection {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 4rem;
+}
+
+.scopeItem {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+
+  .information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 2rem;
+    h3 {
+      @include page.sizeH3;
+    }
+    p {
+      @include page.sizePsmall;
+    }
+  }
+
+  img {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: block;
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0 2rem 2rem 0;
+  }
+  .rightElement {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    border-radius: 2rem 0 0 2rem;
+  }
+}
+
+:host ::ng-deep {
+  .markdownWrapper {
+    ul,
+    ol {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      list-style: none;
+      justify-content: center;
+
+      li {
+        @include page.sizePsmall;
+
+        &::before {
+          content: '\e416';
+          font-family: 'Font Awesome 7 Pro';
+          margin-right: 1.4rem;
+          color: c.$color-primary;
+        }
+      }
+    }
+  }
+}
