@@ -4,10 +4,14 @@ import { ServicePageInterface } from '../../../../core/models/service-page-inter
 import { HeroPage } from '../../../../shared/components/hero-page/hero-page';
 import { BuissnesPage } from '../../../../shared/components/buissnes-page/buissnes-page';
 import { ScopePage } from '../../../../shared/components/scope-page/scope-page';
+import { BenefitsPage } from '../../../../shared/components/benefits-page/benefits-page';
+import { TargetPage } from '../../../../shared/components/target-page/target-page';
+import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
+import { CtaPage } from '../../../../shared/components/cta-page/cta-page';
 
 @Component({
   selector: 'app-graphic-page',
-  imports: [HeroPage, BuissnesPage, ScopePage],
+  imports: [HeroPage, BuissnesPage, ScopePage, BenefitsPage, TargetPage, MiniHeroPage, CtaPage],
   templateUrl: './graphic-page.html',
   styleUrl: './graphic-page.scss',
 })

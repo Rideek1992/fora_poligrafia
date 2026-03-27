@@ -1,0 +1,23 @@
+<div class="wrapperBenefits">
+  <div class="headerText">
+    <h2>{{ benefitsData?.title }}</h2>
+    <p>{{ benefitsData?.description }}</p>
+  </div>
+  <div
+    [class.itemsBenefits]="formatSection === 'oneColumn'"
+    [class.itemsThreeColumns]="formatSection === 'threeColumns'"
+    appInView
+  >
+    @for (item of benefitsData?.itemBenefits; track item.title; let i = $index) {
+      <div
+        [class.itemThree]="formatSection === 'threeColumns'"
+        [class.item]="formatSection === 'oneColumn'"
+        [ngClass]="formatSection === 'oneColumn' ? 'color-' + (i + 1) : ''"
+      >
+        <i [class]="item.icon"></i>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+    }
+  </div>
+</div>

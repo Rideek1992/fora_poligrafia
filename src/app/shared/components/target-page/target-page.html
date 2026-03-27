@@ -1,0 +1,21 @@
+<div class="wrapperTarget">
+  <div class="informationText">
+    <h2>{{ targetData?.title }}</h2>
+    <p>{{ targetData?.description }}</p>
+  </div>
+  <div class="itemsElement">
+    @for (item of targetData?.items; track item.title; let i = $index) {
+      <div (click)="changeElement(i)" [class.isActive]="activeElement === i" class="item">
+        <i [class]="item.icon"></i>
+        <h3>{{ item.title }}</h3>
+      </div>
+    }
+  </div>
+  <div class="activeElement">
+    @for (item of targetData?.items; track item.title; let i = $index) {
+      @if (activeElement === i) {
+        <p>{{ item.description }}</p>
+      }
+    }
+  </div>
+</div>

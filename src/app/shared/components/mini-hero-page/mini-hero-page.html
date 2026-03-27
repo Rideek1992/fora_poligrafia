@@ -1,0 +1,12 @@
+<div
+  [style.backgroundImage]="'url(' + urlAddres + miniHeroData?.image?.url + ')'"
+  class="wrapperMiniHero"
+>
+  <h2>{{ miniHeroData?.title }}</h2>
+  <p>{{ miniHeroData?.description }}</p>
+  <app-button-link
+    [link]="miniHeroData?.buttonLink"
+    [name]="miniHeroData?.buttonText"
+    fragment="lightPhoto"
+  ></app-button-link>
+</div>

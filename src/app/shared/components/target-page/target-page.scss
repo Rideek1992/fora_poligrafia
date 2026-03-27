@@ -1,0 +1,83 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+
+:host {
+  grid-column: 1 / -1;
+}
+
+.wrapperTarget {
+  @include page.pageLayout;
+  grid-gap: 4rem;
+}
+
+.informationText {
+  grid-column: 2 / -2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  h2 {
+    @include page.sizeH2;
+    text-align: center;
+  }
+
+  p {
+    @include page.sizeP;
+  }
+}
+
+.itemsElement {
+  padding: 0 2rem;
+  grid-column: 1 / -1;
+  grid-row: 2 / span 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 3rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  outline: 1px solid c.$font-color-secondary;
+  border-radius: 2rem;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  i {
+    font-size: 3rem;
+    justify-self: center;
+    align-self: start;
+  }
+  h3 {
+    @include page.sizePsmall;
+    text-align: center;
+    justify-self: center;
+    align-self: start;
+  }
+
+  &:hover {
+    background-color: rgba(c.$color-primary, 0.1);
+    transform: scale(1.1);
+  }
+}
+
+.activeElement {
+  grid-column: 2 / -2;
+  min-height: 8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    @include page.sizePsmall;
+    text-align: center;
+  }
+}
+
+.isActive {
+  background-color: rgba(c.$color-primary, 0.2);
+  transform: scale(1.1);
+}

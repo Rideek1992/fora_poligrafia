@@ -1,0 +1,28 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+
+:host {
+  @include page.mainLayout;
+}
+
+::ng-deep app-hero-page {
+  grid-column: 1 / -1;
+}
+
+.loadingPage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(c.$color-primary, 0.6);
+  backdrop-filter: blur(1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    @include page.sizeH2;
+    color: c.$color-secondary;
+  }
+}

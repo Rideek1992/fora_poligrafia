@@ -2,9 +2,7 @@
 @use 'page' as page;
 
 :host {
-  @include page.pageLayout;
-  grid-gap: 8rem;
-  margin-bottom: 6rem;
+  @include page.mainLayout;
 }
 
 ::ng-deep app-hero-page {

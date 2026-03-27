@@ -1,0 +1,21 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+
+:host {
+  @include page.pageLayout;
+}
+
+.wrapperCTA {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
+  h2 {
+    @include page.sizeH2;
+    justify-self: center;
+  }
+  p {
+    @include page.sizeP;
+  }
+}
