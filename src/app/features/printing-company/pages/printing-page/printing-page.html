@@ -6,12 +6,16 @@
     [benefitsData]="dataPrint?.benefitsSection"
     formatSection="threeColumns"
   ></app-benefits-page>
-  <app-mini-hero-page [miniHeroData]="dataPrint?.miniHeroSection"></app-mini-hero-page>
-  <app-target-page [targetData]="dataPrint?.targetSection"></app-target-page>
+  <app-mini-hero-page
+    [miniHeroData]="dataPrint?.miniHeroSection"
+    sideContent="left"
+  ></app-mini-hero-page>
+  <app-target-page
+    [targetData]="dataPrint?.targetSection"
+    formatSection="fourElements"
+  ></app-target-page>
   <app-cta-page [ctaData]="dataPrint?.ctaSection"></app-cta-page>
 }
 @if (!isLoading) {
-  <div class="loadingPage">
-    <p>ładowanie strony ...</p>
-  </div>
+  <app-loader-page></app-loader-page>
 }

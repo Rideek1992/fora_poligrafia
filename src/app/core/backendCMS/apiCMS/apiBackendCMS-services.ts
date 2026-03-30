@@ -65,7 +65,7 @@ export class ApiBackendCMSService {
   }
 
   getTargetSection(slug: string): Observable<ServicePageInterface | null> {
-    const url = `${this.apiUrl}/api/fora-pg-cmses?filters[slug][$eq]=${slug}&populate[targetSection][populate]=*`;
+    const url = `${this.apiUrl}/api/fora-pg-cmses?filters[slug][$eq]=${slug}&populate[targetSection][populate][items]image[populate]=*`;
 
     return this.http
       .get<ServicePageResponseInterface>(url)

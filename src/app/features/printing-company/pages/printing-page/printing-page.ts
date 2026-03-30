@@ -8,10 +8,20 @@ import { BenefitsPage } from '../../../../shared/components/benefits-page/benefi
 import { TargetPage } from '../../../../shared/components/target-page/target-page';
 import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
 import { CtaPage } from '../../../../shared/components/cta-page/cta-page';
+import { LoaderPage } from '../../../../shared/components/loader-page/loader-page';
 
 @Component({
   selector: 'app-printing-page',
-  imports: [HeroPage, BuissnesPage, ScopePage, BenefitsPage, TargetPage, MiniHeroPage, CtaPage],
+  imports: [
+    HeroPage,
+    BuissnesPage,
+    ScopePage,
+    BenefitsPage,
+    TargetPage,
+    MiniHeroPage,
+    CtaPage,
+    LoaderPage,
+  ],
   templateUrl: './printing-page.html',
   styleUrl: './printing-page.scss',
 })

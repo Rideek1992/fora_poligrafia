@@ -3,19 +3,41 @@
     <h2>{{ targetData?.title }}</h2>
     <p>{{ targetData?.description }}</p>
   </div>
-  <div class="itemsElement">
-    @for (item of targetData?.items; track item.title; let i = $index) {
-      <div (click)="changeElement(i)" [class.isActive]="activeElement === i" class="item">
-        <i [class]="item.icon"></i>
-        <h3>{{ item.title }}</h3>
-      </div>
-    }
-  </div>
-  <div class="activeElement">
-    @for (item of targetData?.items; track item.title; let i = $index) {
-      @if (activeElement === i) {
-        <p>{{ item.description }}</p>
+  @if (formatSection !== 'photoSlider') {
+    <div
+      [class.fourElements]="formatSection === 'fourElements'"
+      [ngClass]="formatSection === undefined ? 'itemsElement' : ''"
+    >
+      @for (item of targetData?.items; track item.title; let i = $index) {
+        <div (click)="changeElement(i)" [class.isActive]="activeElement === i" class="item">
+          <i [class]="item.icon"></i>
+          <h3>{{ item.title }}</h3>
+        </div>
       }
-    }
-  </div>
+    </div>
+    <div class="activeElement">
+      @for (item of targetData?.items; track item.title; let i = $index) {
+        @if (activeElement === i) {
+          <p>{{ item.description }}</p>
+        }
+      }
+    </div>
+  }
+  @if (formatSection === 'photoSlider') {
+    <div class="photoSlider">
+      @for (item of targetData?.items; track item.title; let i = $index) {
+        <div (click)="changePhotoActive(i)" [class.active]="photoActiveNumber === i" class="item">
+          <img [alt]="item.title" [src]="photoAddres + item?.image?.url" />
+          <div
+            [style.background-image]="'url(' + photoAddres + item?.image?.url + ')'"
+            class="photoElement"
+          ></div>
+          <h2>{{ item.title }}</h2>
+          <div class="informationItem">
+            <markdown [data]="item.markdownText"></markdown>
+          </div>
+        </div>
+      }
+    </div>
+  }
 </div>

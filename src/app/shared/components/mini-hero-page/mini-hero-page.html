@@ -1,10 +1,12 @@
 <div
-  [style.backgroundImage]="'url(' + urlAddres + miniHeroData?.image?.url + ')'"
+  [style.background-image]="'url(' + urlAddres + miniHeroData?.image?.url + ')'"
   class="wrapperMiniHero"
 >
-  <h2>{{ miniHeroData?.title }}</h2>
-  <p>{{ miniHeroData?.description }}</p>
+  <div [class.coverElementLeft]="sideContent === 'left'"></div>
+  <h2 [class.leftH2]="sideContent === 'left'">{{ miniHeroData?.title }}</h2>
+  <p [class.leftP]="sideContent === 'left'">{{ miniHeroData?.description }}</p>
   <app-button-link
+    [class.leftButton]="sideContent === 'left'"
     [link]="miniHeroData?.buttonLink"
     [name]="miniHeroData?.buttonText"
     fragment="lightPhoto"

@@ -12,5 +12,10 @@ import { NgClass } from '@angular/common';
 export class BenefitsPage {
   @Input() benefitsData!: BenefitSectionInterface | null | undefined;
   @Input() formatSection?: string;
-  protected readonly frameElement = frameElement;
+
+  activeBenefit: number = 0;
+
+  changeBenefit(index: number) {
+    this.activeBenefit = index;
+  }
 }

@@ -10,6 +10,10 @@
   grid-column: 1 / -1;
   grid-gap: 6rem;
   margin-bottom: 6rem;
+
+  ::ng-deep app-hero-page {
+    grid-column: 1 / -1;
+  }
 }
 
 @mixin sizeH2 {

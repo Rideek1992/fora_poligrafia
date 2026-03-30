@@ -11,6 +11,7 @@ import { ButtonLink } from '../button-link/button-link';
 })
 export class MiniHeroPage {
   @Input() miniHeroData!: MiniHeroSectionInterface | null | undefined;
+  @Input() sideContent?: string;
   private env = enviroment;
   urlAddres = this.env.apiUrl;
 }

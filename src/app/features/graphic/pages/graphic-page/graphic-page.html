@@ -10,3 +10,6 @@
   <app-mini-hero-page [miniHeroData]="pageData?.miniHeroSection"></app-mini-hero-page>
   <app-cta-page [ctaData]="pageData?.ctaSection"></app-cta-page>
 }
+@if (!isLoading) {
+  <app-loader-page></app-loader-page>
+}
