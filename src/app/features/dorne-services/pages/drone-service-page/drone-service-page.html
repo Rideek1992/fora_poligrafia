@@ -1,1 +1,21 @@
-<p>drone-service-page works!</p>
+@if (isActive) {
+  <app-hero-page [heroData]="dataDronService?.heroSection" [isLoading]="isActive"></app-hero-page>
+  <app-buissnes-page [buissnessData]="dataDronService?.businessSection"></app-buissnes-page>
+  <app-scope-page [scopeData]="dataDronService?.scopeSection"></app-scope-page>
+  <app-benefits-page
+    [benefitsData]="dataDronService?.benefitsSection"
+    formatSection="oneColumn"
+  ></app-benefits-page>
+  <app-target-page
+    [targetData]="dataDronService?.targetSection"
+    formatSection="fourElements"
+  ></app-target-page>
+  <app-mini-hero-page
+    [miniHeroData]="dataDronService?.miniHeroSection"
+    sideContent="left"
+  ></app-mini-hero-page>
+  <app-cta-page [ctaData]="dataDronService?.ctaSection"></app-cta-page>
+}
+@if (!isActive) {
+  <app-loader-page></app-loader-page>
+}

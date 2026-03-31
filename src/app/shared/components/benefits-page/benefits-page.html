@@ -4,6 +4,7 @@
     <p>{{ benefitsData?.description }}</p>
   </div>
   <div
+    [class.dataAnaliticPage]="formatSection === 'dataAnaliticPage'"
     [class.itemsBenefits]="formatSection === 'oneColumn'"
     [class.itemsThreeColumns]="formatSection === 'threeColumns'"
     [class.visualIdf]="formatSection === 'visualIdf'"

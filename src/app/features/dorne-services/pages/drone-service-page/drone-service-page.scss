@@ -1,0 +1,6 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+
+:host {
+  @include page.mainLayout;
+}
