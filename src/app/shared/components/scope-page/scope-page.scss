@@ -8,6 +8,7 @@
 .wrapperScope {
   @include page.pageLayout;
   grid-gap: 4rem;
+  @include page.scrollHash;
 }
 
 .introSection {

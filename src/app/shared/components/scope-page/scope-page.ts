@@ -11,6 +11,7 @@ import { enviroment } from '../../../../enviroment';
 })
 export class ScopePage {
   @Input() scopeData!: ScopeSectionInterface | null | undefined;
+  @Input() hashtag?: string;
   private env = enviroment;
   photoAddres = this.env.apiUrl;
 }

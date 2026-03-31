@@ -1,1 +1,6 @@
-<p>contact-page works!</p>
+@if (isActive) {
+  <app-hero-page [heroData]="data?.heroSection" photoPosition="top"></app-hero-page>
+}
+@if (!isActive) {
+  <app-loader-page></app-loader-page>
+}
