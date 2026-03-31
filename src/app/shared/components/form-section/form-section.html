@@ -1,0 +1,41 @@
+<div class="wrapperForm" id="form">
+  <h2>Skontaktuj się z nami</h2>
+  <p>
+    Napisz, czego potrzebujesz, a przygotujemy odpowiedź dopasowaną do Twojego zapytania. Możesz
+    przesłać informacje o produkcie, nakładzie, terminie realizacji lub zakresie projektu.
+  </p>
+  <form action="" class="formSection">
+    <div class="informationUser">
+      <div class="formField">
+        <label for="name">Imię</label>
+        <input id="name" name="name" type="text" />
+      </div>
+      <div class="formField">
+        <label for="email">e-mail</label>
+        <input id="email" name="email" type="email" />
+      </div>
+      <div class="formField">
+        <label for="phone">telefon</label>
+        <input id="phone" name="phnoe" type="text" />
+      </div>
+    </div>
+    <div class="messageSection">
+      <div class="formField">
+        <label for="topic">temat</label>
+        <input id="topic" name="topic" type="text" />
+      </div>
+      <div class="messageField">
+        <label for="message">wiadomość</label>
+        <textarea cols="" id="message" name="message" rows=""></textarea>
+      </div>
+      <div class="optionsElement">
+        <label for="conversElement">dotyczy</label>
+        <select id="conversElement" name="conversElement">
+          @for (item of dataOptionElements; track item.value; let i = $index) {
+            <option value="{{ item.value }}">{{ item.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </form>
+</div>

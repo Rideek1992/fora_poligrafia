@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin, map, Observable } from 'rxjs';
 import { ServicePageInterface } from '../../models/service-page-interface';
 import { enviroment } from '../../../../enviroment';
+import {
+  PoliticPrivateInterface,
+  PoliticPrivateResponseInterface,
+} from '../../models/politic-private-interface';
 
 export interface ServicePageResponseInterface {
   data: ServicePageInterface[];
@@ -101,5 +105,12 @@ export class ApiBackendCMSService {
       ctaSection: this.getCTASection(slug).pipe(map((data) => data?.ctaSection)),
       miniHeroSection: this.getMiniHeroSection(slug).pipe(map((data) => data?.miniHeroSection)),
     });
+  }
+
+  getPoliticPrivacy(): Observable<PoliticPrivateInterface | null> {
+    const url = `${this.apiUrl}/api/fora-pg-privacy-politics`;
+    return this.http
+      .get<PoliticPrivateResponseInterface>(url)
+      .pipe(map((response) => response.data[0] ?? null));
   }
 }

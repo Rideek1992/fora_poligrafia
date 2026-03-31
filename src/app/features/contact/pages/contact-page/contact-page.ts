@@ -3,10 +3,11 @@ import { ServicePageInterface } from '../../../../core/models/service-page-inter
 import { ApiBackendCMSService } from '../../../../core/backendCMS/apiCMS/apiBackendCMS-services';
 import { HeroPage } from '../../../../shared/components/hero-page/hero-page';
 import { LoaderPage } from '../../../../shared/components/loader-page/loader-page';
+import { FormSection } from '../../../../shared/components/form-section/form-section';
 
 @Component({
   selector: 'app-contact-page',
-  imports: [HeroPage, LoaderPage],
+  imports: [HeroPage, LoaderPage, FormSection],
   templateUrl: './contact-page.html',
   styleUrl: './contact-page.scss',
 })
