@@ -4,38 +4,45 @@
     Napisz, czego potrzebujesz, a przygotujemy odpowiedź dopasowaną do Twojego zapytania. Możesz
     przesłać informacje o produkcie, nakładzie, terminie realizacji lub zakresie projektu.
   </p>
-  <form action="" class="formSection">
+  <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" class="formSection">
     <div class="informationUser">
       <div class="formField">
         <label for="name">Imię</label>
-        <input id="name" name="name" type="text" />
+        <input id="name" name="name" ngModel type="text" />
       </div>
       <div class="formField">
         <label for="email">e-mail</label>
-        <input id="email" name="email" type="email" />
+        <input id="email" name="email" ngModel type="email" />
       </div>
       <div class="formField">
         <label for="phone">telefon</label>
-        <input id="phone" name="phnoe" type="text" />
+        <input id="phone" name="phone" ngModel type="text" />
       </div>
     </div>
     <div class="messageSection">
       <div class="formField">
         <label for="topic">temat</label>
-        <input id="topic" name="topic" type="text" />
+        <input id="topic" name="topic" ngModel type="text" />
       </div>
       <div class="messageField">
         <label for="message">wiadomość</label>
-        <textarea cols="" id="message" name="message" rows=""></textarea>
+        <textarea cols="" id="message" name="message" ngModel rows=""></textarea>
       </div>
       <div class="optionsElement">
-        <label for="conversElement">dotyczy</label>
-        <select id="conversElement" name="conversElement">
-          @for (item of dataOptionElements; track item.value; let i = $index) {
-            <option value="{{ item.value }}">{{ item.name }}</option>
-          }
+        <label for="conversatrionElement">dotyczy</label>
+        <select id="conversatrionElement" name="conversatrionElement" ngModel>
+          <option *ngFor="let item of dataOptionElements" [value]="item.value">
+            {{ item.name }}
+          </option>
         </select>
       </div>
     </div>
+
+    <div class="checkboxField">
+      <input id="consentContactGiven" name="consentContactGiven" ngModel required type="checkbox" />
+      <label for="consentContactGiven"> Wyrażam zgodę na przetwarzanie danych osobowych </label>
+    </div>
+
+    <button type="submit">Wyślij formularz</button>
   </form>
 </div>
