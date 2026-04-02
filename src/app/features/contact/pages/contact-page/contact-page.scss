@@ -1,5 +1,6 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'sass:color';
 
 :host {
   @include page.mainLayout;
@@ -101,7 +102,7 @@
       p {
         grid-column: 1 / span 1;
         @include page.sizeP;
-        color: lighten(c.$color-item-6, 30%);
+        color: color.adjust(c.$color-item-6, $lightness: 30%);
         display: flex;
         justify-content: space-between;
       }
@@ -184,5 +185,148 @@
         white-space: pre-line;
       }
     }
+  }
+}
+
+.cooperationLookSection {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
+  h2 {
+    @include page.sizeH2;
+    text-align: center;
+  }
+
+  p {
+    @include page.sizeP;
+  }
+
+  .elementsLook {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+
+    .itemLook {
+      grid-row: 1 / span 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      i {
+        @include page.sizeH2;
+        outline: 1px solid c.$color-primary;
+        outline-offset: 0.3rem;
+        width: 6rem;
+        height: 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: rgba(c.$color-primary, 0.1);
+      }
+      h3 {
+        @include page.sizeH4;
+      }
+
+      i.active {
+        background-color: rgba(c.$color-primary, 0.8);
+      }
+    }
+
+    p {
+      padding: 2rem;
+      grid-column: 1 / -1;
+      grid-row: 2 / span 1;
+      @include page.sizeP;
+      outline: 1px solid rgba(c.$color-primary, 0.3);
+      border-radius: 2rem;
+      background-color: rgba(c.$color-primary, 0.05);
+    }
+  }
+}
+
+.cooperationDetails {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+  h2 {
+    @include page.sizeH2;
+    text-align: center;
+  }
+  p {
+    @include page.sizeP;
+  }
+  .elementsDetails {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 2rem;
+    .itemDetails {
+      display: grid;
+      grid-template-columns: 4rem 1fr;
+      grid-template-rows: repeat(2, auto);
+      grid-gap: 1rem;
+      justify-items: start;
+      align-items: center;
+      padding: 2rem;
+      outline: 1px solid;
+      border-radius: 2rem;
+      min-height: 14rem;
+      i {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+        @include page.sizeH3;
+      }
+
+      h3 {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+        @include page.sizeH3;
+      }
+      p {
+        grid-column: 1 / -1;
+        grid-row: 2 / span 1;
+        @include page.sizePsmall;
+      }
+
+      &:nth-child(1) {
+        background-color: rgba(c.$color-item-1, 0.2);
+        outline-color: c.$color-item-1;
+      }
+      &:nth-child(2) {
+        background-color: rgba(c.$color-item-3, 0.2);
+        outline-color: c.$color-item-3;
+      }
+      &:nth-child(3) {
+        background-color: rgba(c.$color-item-4, 0.2);
+        outline-color: c.$color-item-4;
+      }
+      &:nth-child(4) {
+        background-color: rgba(c.$color-item-6, 0.2);
+        outline-color: c.$color-item-6;
+      }
+    }
+  }
+}
+
+.FQASection {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
+  h2 {
+    @include page.sizeH2;
+    justify-self: center;
+    align-self: center;
+  }
+  p {
+    @include page.sizeP;
   }
 }

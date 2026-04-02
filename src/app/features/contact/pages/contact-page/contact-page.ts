@@ -8,15 +8,28 @@ import { enviroment } from '../../../../../enviroment';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonLink } from '../../../../shared/components/button-link/button-link';
+import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
+import { FQASection } from '../../../../core/models/FQA-section-interface';
+import { FqaSection } from '../../../../shared/components/fqa-section/fqa-section';
 
 @Component({
   selector: 'app-contact-page',
-  imports: [HeroPage, LoaderPage, FormSection, FormsModule, CommonModule, ButtonLink],
+  imports: [
+    HeroPage,
+    LoaderPage,
+    FormSection,
+    FormsModule,
+    CommonModule,
+    ButtonLink,
+    MiniHeroPage,
+    FqaSection,
+  ],
   templateUrl: './contact-page.html',
   styleUrl: './contact-page.scss',
 })
 export class ContactPage implements OnInit {
   data: ServicePageInterface | null | undefined = null;
+  dataFQA: FQASection | null | undefined = null;
   isActive: boolean = false;
   public env = enviroment;
 
@@ -25,6 +38,8 @@ export class ContactPage implements OnInit {
   selectedCity: string = '';
   areaMessage: string = '';
   showSuggestions: boolean = false;
+
+  activeLookNumber: number = 0;
 
   constructor(private api: ApiBackendCMSService) {}
 
@@ -69,6 +84,10 @@ export class ContactPage implements OnInit {
       'Tak, działamy w tym obszarze. Skontaktuj się z nami, aby omówić szczegóły współpracy.';
   }
 
+  changeLookNumber(index: number): void {
+    this.activeLookNumber = index;
+  }
+
   ngOnInit(): void {
     this.api.getPageData('kontakt').subscribe({
       next: (data) => {
@@ -78,6 +97,15 @@ export class ContactPage implements OnInit {
       error: (err) => {
         console.log(err);
         this.isActive = false;
+      },
+    });
+
+    this.api.getFQAData('kontakt').subscribe({
+      next: (data) => {
+        this.dataFQA = data;
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }

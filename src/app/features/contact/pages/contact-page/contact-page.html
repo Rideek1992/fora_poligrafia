@@ -112,6 +112,55 @@
       </div>
     </div>
   </div>
+  <div class="cooperationLookSection">
+    <h2>Jak wygląda współpraca</h2>
+    <p>
+      Stawiamy na prosty i sprawny proces kontaktu. Niezależnie od tego, czy interesuje Cię projekt
+      graficzny, druk, identyfikacja wizualna, strona internetowa czy inna usługa, prowadzimy Cię
+      krok po kroku od pierwszego zapytania do ustalenia najlepszego rozwiązania.
+    </p>
+    <div class="elementsLook">
+      @for (item of env.cooperationLookData; track $index; let i = $index) {
+        <div (click)="changeLookNumber(i)" class="itemLook">
+          <i [class.active]="activeLookNumber === i" class="{{ item.icon }}"></i>
+          <h3>
+            <span>{{ i + 1 }}. </span>{{ item.title }}
+          </h3>
+        </div>
+        <p *ngIf="activeLookNumber === i">{{ item.description }}</p>
+      }
+    </div>
+  </div>
+  <div class="cooperationDetails">
+    <h2>Co warto przygotować przed wysłaniem zapytania</h2>
+    <p>
+      Im więcej konkretnych informacji przekażesz już na początku, tym szybciej będziemy mogli
+      wrócić z dopasowaną odpowiedzią, wstępną wyceną lub propozycją dalszych kroków. Nie musisz
+      mieć wszystkiego gotowego, ale kilka podstawowych informacji bardzo usprawnia kontakt.
+    </p>
+    <div class="elementsDetails">
+      @for (item of env.cooperationDetailsData; track $index; let i = $index) {
+        <div class="itemDetails">
+          <i class="{{ item.icon }}"></i>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+  <app-mini-hero-page
+    [miniHeroData]="data?.miniHeroSection"
+    [sideContent]="'left'"
+  ></app-mini-hero-page>
+  <div class="FQASection">
+    <h2>FAQ – pytania i odpowiedzi</h2>
+    <p>
+      Przed kontaktem sprawdź odpowiedzi na najczęściej pojawiające się pytania dotyczące
+      współpracy, wyceny, terminów oraz formy kontaktu. To szybki sposób, aby lepiej przygotować się
+      do wysłania zapytania.
+    </p>
+    <app-fqa-section [fqaData]="dataFQA?.FQAElement"></app-fqa-section>
+  </div>
 
   <app-form-section></app-form-section>
 }

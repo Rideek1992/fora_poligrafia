@@ -7,4 +7,5 @@ export interface MiniHeroSectionInterface {
   image: MediaItem | null;
   buttonText: string;
   buttonLink: string;
+  buttonId: string;
 }

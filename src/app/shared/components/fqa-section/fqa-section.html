@@ -1,0 +1,13 @@
+<div class="wrapperFQA">
+  @for (item of fqaData; track item.question; let i = $index) {
+    <div class="itemFQA">
+      <div class="questionSection">
+        <h4>{{ item.question }}</h4>
+        <i (click)="getFQA(i)" [class.active]="activeFQA === i" class="fa-thin fa-angles-down"></i>
+      </div>
+      <div [class.open]="activeFQA === i" class="anwserSection">
+        <p *ngIf="activeFQA === i">{{ item.answer }}</p>
+      </div>
+    </div>
+  }
+</div>

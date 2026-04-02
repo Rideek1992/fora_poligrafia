@@ -7,6 +7,7 @@ import {
   PoliticPrivateInterface,
   PoliticPrivateResponseInterface,
 } from '../../models/politic-private-interface';
+import { FQASection } from '../../models/FQA-section-interface';
 
 export interface ServicePageResponseInterface {
   data: ServicePageInterface[];
@@ -111,6 +112,14 @@ export class ApiBackendCMSService {
     const url = `${this.apiUrl}/api/fora-pg-privacy-politics`;
     return this.http
       .get<PoliticPrivateResponseInterface>(url)
+      .pipe(map((response) => response.data[0] ?? null));
+  }
+
+  getFQAData(slug: string): Observable<FQASection | null> {
+    const url = `${this.apiUrl}/api/fora-pg-fqas?filters[pageName][$eq]=${slug}&populate=*`;
+
+    return this.http
+      .get<{ data: FQASection[]; meta: any }>(url)
       .pipe(map((response) => response.data[0] ?? null));
   }
 }

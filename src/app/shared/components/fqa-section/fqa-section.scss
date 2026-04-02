@@ -1,0 +1,64 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+@use 'sass:color';
+
+.wrapperFQA {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  .itemFQA {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid rgba(c.$color-item-3, 0.4);
+    border-radius: 2rem;
+    overflow: hidden;
+    .questionSection {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background-color: rgba(c.$color-item-3, 0.1);
+      padding: 1rem;
+      h4 {
+        @include page.sizeH4;
+      }
+      i {
+        @include page.sizeH4;
+        margin-right: 4rem;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+      }
+      .active {
+        transform: rotate(180deg);
+      }
+    }
+
+    .anwserSection {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        max-height 0.4s ease-in-out,
+        opacity 0.3s ease-in-out;
+      background-color: rgba(c.$font-color-primary, 0.1);
+
+      p {
+        margin: 0;
+        padding: 0 1rem;
+        transition: padding 0.4s ease-in-out;
+      }
+    }
+
+    .anwserSection.open {
+      max-height: 400px;
+      opacity: 1;
+
+      p {
+        padding: 1rem;
+      }
+    }
+  }
+}
