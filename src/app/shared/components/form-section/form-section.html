@@ -4,33 +4,61 @@
     Napisz, czego potrzebujesz, a przygotujemy odpowiedź dopasowaną do Twojego zapytania. Możesz
     przesłać informacje o produkcie, nakładzie, terminie realizacji lub zakresie projektu.
   </p>
+  <div *ngIf="succesData.isSucces" class="messageSucces">
+    <p>
+      Dziękujemy <span *ngIf="succesData.data.name !== ''">{{ succesData.data.name }}</span> za
+      wiadomość
+    </p>
+    <p>Twoje zapytanie zostało wysłane pomyślnie.</p>
+    <p>
+      Numer zgłoszenia: <span>{{ succesData.data.informationCode }}</span>
+    </p>
+    <p>W razie kontaktu prosimy powoływać sie na ten numer.</p>
+  </div>
   <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" class="formSection">
     <div class="informationUser">
       <div class="formField">
         <label for="name">Imię</label>
-        <input id="name" name="name" ngModel type="text" />
+        <input [(ngModel)]="formModel.name" id="name" name="name" type="text" />
       </div>
+
       <div class="formField">
         <label for="email">e-mail</label>
-        <input id="email" name="email" ngModel type="email" />
+        <input [(ngModel)]="formModel.email" email id="email" name="email" required type="email" />
       </div>
+
       <div class="formField">
         <label for="phone">telefon</label>
-        <input id="phone" name="phone" ngModel type="text" />
+        <input [(ngModel)]="formModel.phone" id="phone" name="phone" type="text" />
       </div>
     </div>
+
     <div class="messageSection">
       <div class="formField">
         <label for="topic">temat</label>
-        <input id="topic" name="topic" ngModel type="text" />
+        <input [(ngModel)]="formModel.topic" id="topic" name="topic" type="text" />
       </div>
+
       <div class="messageField">
         <label for="message">wiadomość</label>
-        <textarea cols="" id="message" name="message" ngModel rows=""></textarea>
+        <textarea
+          [(ngModel)]="formModel.message"
+          id="message"
+          name="message"
+          required
+          rows="6"
+        ></textarea>
       </div>
+
       <div class="optionsElement">
         <label for="conversatrionElement">dotyczy</label>
-        <select id="conversatrionElement" name="conversatrionElement" ngModel>
+        <select
+          [(ngModel)]="formModel.conversatrionElement"
+          id="conversatrionElement"
+          name="conversatrionElement"
+          required
+        >
+          <option value="">Wybierz opcję</option>
           <option *ngFor="let item of dataOptionElements" [value]="item.value">
             {{ item.name }}
           </option>
@@ -39,10 +67,21 @@
     </div>
 
     <div class="checkboxField">
-      <input id="consentContactGiven" name="consentContactGiven" ngModel required type="checkbox" />
-      <label for="consentContactGiven"> Wyrażam zgodę na przetwarzanie danych osobowych </label>
+      <input
+        [(ngModel)]="formModel.consentContactGiven"
+        id="consentContactGiven"
+        name="consentContactGiven"
+        required
+        type="checkbox"
+      />
+      <label for="consentContactGiven">
+        Wyrażam zgodę na przetwarzanie moich danych osobowych przez FORA Poligrafia w celu kontaktu
+        oraz obsługi przesłanego zapytania, zgodnie z
+        <a href="/polityka-prywatnosci">polityka prywatnosci</a>
+      </label>
     </div>
-
-    <button type="submit">Wyślij formularz</button>
+    <div class="button">
+      <button [disabled]="contactForm.invalid" type="submit">Wyślij formularz</button>
+    </div>
   </form>
 </div>

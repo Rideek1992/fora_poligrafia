@@ -1,5 +1,118 @@
 @if (isActive) {
   <app-hero-page [heroData]="data?.heroSection" photoPosition="top"></app-hero-page>
+  <div class="contactDataSection">
+    <h2>Skontaktuj się w wygodny dla siebie sposób</h2>
+    <p>
+      Jeśli wolisz napisać bezpośrednio lub porozmawiać o zakresie współpracy, jesteśmy do
+      dyspozycji. Odpowiadamy na pytania dotyczące projektów graficznych, poligrafii firmowej, stron
+      internetowych, identyfikacji wizualnej, usług dronowych oraz analizy danych.
+    </p>
+    <div class="elementsContact">
+      <div class="itemContact">
+        <div class="header">
+          <i class="fa-thin fa-envelopes"></i>
+          <h4>Adres email</h4>
+        </div>
+        <p>
+          Jeśli chcesz skontaktować się z nami bezpośrednio, przesłać dodatkowe materiały lub opisać
+          bardziej złożone zapytanie, napisz na nasz adres e-mail.
+          <a href="/kontakt#form">Formularz kontaktowy </a> znajdziesz na końcu strony.
+        </p>
+        <a href="mailto:{{ env.contactData.email }}">{{ env.contactData.email }}</a>
+      </div>
+      <div class="itemContact">
+        <div class="header">
+          <i class="fa-thin fa-mobile-screen"></i>
+          <h4>Kontakt telefoniczny</h4>
+        </div>
+        <p>
+          Jeśli chcesz szybciej omówić temat, doprecyzować usługę albo ustalić, jak najlepiej
+          przygotować zapytanie, skontaktuj się z nami telefonicznie.
+        </p>
+        <a href="tel:+48{{ env.contactData.phone }}">
+          {{ env.contactData.phone.slice(0, 3) }}-{{ env.contactData.phone.slice(3, 6) }}-{{
+            env.contactData.phone.slice(6, 9)
+          }}
+        </a>
+      </div>
+      <div class="openCompany">
+        <div class="header">
+          <i class="fa-thin fa-timer"></i>
+          <h4>Godziny kontaktu</h4>
+        </div>
+        <p>
+          Najsprawniej odpowiadamy w godzinach pracy. Jeśli wyślesz wiadomość poza tym czasem,
+          wrócimy do Ciebie możliwie szybko w najbliższym terminie.
+        </p>
+        <div class="element">
+          <p>
+            Poniedziałek: <span>{{ env.contactData.openHouers.monday }}</span>
+          </p>
+          <p>
+            Wtorek: <span>{{ env.contactData.openHouers.tuesday }}</span>
+          </p>
+          <p>
+            Środa: <span>{{ env.contactData.openHouers.wednesday }}</span>
+          </p>
+          <p>
+            Czwartek: <span>{{ env.contactData.openHouers.thursday }}</span>
+          </p>
+          <p>
+            Piatek: <span>{{ env.contactData.openHouers.friday }}</span>
+          </p>
+          <p>
+            Sobota: <span>{{ env.contactData.openHouers.saturday }}</span>
+          </p>
+          <p>
+            Niedziela: <span>{{ env.contactData.openHouers.sunday }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="areaCard">
+        <div class="header">
+          <i class="fa-thin fa-map-location"></i>
+          <h3>Sprawdź obszar działania</h3>
+        </div>
+        <p>
+          Wpisz swoją miejscowość, aby sprawdzić, czy działamy w Twoim obszarze. Obsługujemy firmy z
+          Legionowa, Warszawy i okolic, a wiele realizacji prowadzimy również zdalnie.
+        </p>
+
+        <div class="searchWrapper">
+          <input
+            (input)="onSerchCity()"
+            [(ngModel)]="serchCity"
+            id="cities"
+            name="cities"
+            placeholder="Wpisz miasto"
+            required
+            type="text"
+          />
+        </div>
+
+        <div *ngIf="showSuggestions && filteredCities.length > 0" class="suggestionsList">
+          <button
+            (click)="selectCity(city)"
+            *ngFor="let city of filteredCities"
+            class="suggestionItem"
+            type="button"
+          >
+            {{ city.name }}
+          </button>
+        </div>
+
+        <div *ngIf="areaMessage" class="areaMessage">
+          <p>{{ areaMessage }}</p>
+          <app-button-link
+            [idLink]="'form'"
+            [link]="'kontakt'"
+            [name]="'napisz do nas'"
+          ></app-button-link>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <app-form-section></app-form-section>
 }
 @if (!isActive) {

@@ -3,6 +3,7 @@ import { FormElementsService } from '../../../core/datacore/formElements/formEle
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ContentFormService } from './form-section.service';
+import { ApiBackendCMSService } from '../../../core/backendCMS/apiCMS/apiBackendCMS-services';
 
 @Component({
   selector: 'app-form-section',
@@ -12,40 +13,83 @@ import { ContentFormService } from './form-section.service';
   standalone: true,
 })
 export class FormSection {
-  consentContactGiven = false;
-  consentContactVersion = 'v1';
-  private FormOptionsElement = inject(FormElementsService);
-  dataOptionElements = this.FormOptionsElement.getActiveFormOptionElement();
-  private ContentFormService = inject(ContentFormService);
+  consentContactVersion: any = '';
+  formModel = {
+    name: '',
+    email: '',
+    phone: '',
+    topic: '',
+    message: '',
+    conversatrionElement: '',
+    consentContactGiven: false,
+  };
+
+  succesData = {
+    isSucces: false,
+    data: {
+      name: '',
+      email: '',
+      phone: '',
+      informationCode: '',
+    },
+  };
+  private api = inject(ApiBackendCMSService);
+  private formOptionsElement = inject(FormElementsService);
+  dataOptionElements = this.formOptionsElement.getActiveFormOptionElement();
+
+  private contentFormService = inject(ContentFormService);
 
   onSubmit(form: NgForm): void {
     if (form.invalid) {
       return;
     }
 
-    const payload = {
-      name: form.value.name,
-      email: form.value.email,
-      phone: form.value.phone || '',
-      message: form.value.message,
-      topic: form.value.topic,
-      conversatrionElement: form.value.conversatrionElement,
-      consentContactGiven: form.value.consentContactGiven,
-      consentContactVersion: this.consentContactVersion,
-    };
+    this.api.getPoliticPrivacy().subscribe({
+      next: (data) => {
+        this.consentContactVersion = data?.version;
 
-    console.log('Payload wysłany do serwera:', payload);
+        const payload = {
+          name: this.formModel.name,
+          email: this.formModel.email,
+          phone: this.formModel.phone || '',
+          message: this.formModel.message,
+          topic: this.formModel.topic,
+          conversatrionElement: this.formModel.conversatrionElement,
+          consentContactGiven: this.formModel.consentContactGiven,
+          consentContactVersion: this.consentContactVersion,
+        };
 
-    console.log('FORM VALUE', form.value);
-    console.log('PAYLOAD', payload);
-
-    this.ContentFormService.sendContactForm(payload).subscribe({
-      next: (response) => {
-        console.log('Sukces', response);
-        form.resetForm();
+        this.contentFormService.sendContactForm(payload).subscribe({
+          next: (response) => {
+            // console.log('Sukces', response);
+            this.succesData = {
+              isSucces: true,
+              data: {
+                name: this.formModel.name,
+                email: this.formModel.email,
+                phone: this.formModel.phone || '',
+                informationCode: response.data.strapiResult.data.informationCode,
+              },
+            };
+            console.log(this.succesData);
+            form.resetForm();
+            this.formModel = {
+              name: '',
+              email: '',
+              phone: '',
+              topic: '',
+              message: '',
+              conversatrionElement: '',
+              consentContactGiven: false,
+            };
+          },
+          error: (error) => {
+            console.error('Błąd wysyłki formularza', error);
+          },
+        });
       },
       error: (error) => {
-        console.error('Bład wysyłki formularza', error);
+        console.error('Błąd pobierania danych', error);
       },
     });
   }

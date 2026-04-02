@@ -2,12 +2,6 @@ import { ConversatrionElement } from './formElements-interface';
 
 export const FORM_ELEMENT_OPTIONS: ConversatrionElement[] = [
   {
-    name: '',
-    value: '',
-    active: true,
-    orderBy: 0,
-  },
-  {
     name: 'projekt graficzny',
     value: 'projekt-graficzny',
     active: true,

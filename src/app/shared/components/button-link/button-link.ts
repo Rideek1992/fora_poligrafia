@@ -10,4 +10,5 @@ export class ButtonLink {
   @Input() link: string | undefined = '';
   @Input() name: string | undefined = '';
   @Input() fragment: string | undefined = '';
+  @Input() idLink!: string | undefined;
 }

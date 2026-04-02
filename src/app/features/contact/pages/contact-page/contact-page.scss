@@ -4,3 +4,185 @@
 :host {
   @include page.mainLayout;
 }
+
+.contactDataSection {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
+  h2 {
+    @include page.sizeH2;
+    text-align: center;
+  }
+  p {
+    @include page.sizeP;
+  }
+}
+
+.elementsContact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+
+  .itemContact {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    padding: 2rem;
+    outline: 1px solid rgba(c.$color-primary, 0.4);
+    border-radius: 2rem;
+    background-color: rgba(c.$color-primary, 0.15);
+
+    .header {
+      grid-column: 1 / -1;
+      grid-row: 1 / span 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      h4,
+      i {
+        @include page.sizeH3;
+      }
+    }
+    p {
+      grid-column: 1 / -1;
+      grid-row: 2 / span 1;
+      @include page.sizePxxsmall;
+      text-align: center;
+      a {
+        font-size: inherit;
+        color: inherit;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    }
+    a {
+      @include page.sizeP;
+      color: c.$color-primary;
+      text-decoration: none;
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+  }
+  .openCompany {
+    grid-column: 1 / span 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    outline: 1px solid rgba(c.$color-item-6, 0.9);
+    border-radius: 2rem;
+    background-color: rgba(c.$color-item-6, 0.1);
+
+    .header {
+      grid-column: 1 / span 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      & > * {
+        @include page.sizeH3;
+      }
+    }
+
+    p {
+      @include page.sizePxxsmall;
+    }
+
+    .element {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 1rem;
+      p {
+        grid-column: 1 / span 1;
+        @include page.sizeP;
+        color: lighten(c.$color-item-6, 30%);
+        display: flex;
+        justify-content: space-between;
+      }
+      span {
+        color: c.$font-color-primary;
+      }
+    }
+  }
+  .areaCard {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    padding: 2rem;
+    outline: 1px solid rgba(c.$color-item-4, 0.8);
+    border-radius: 2rem;
+    background-color: rgba(c.$color-item-4, 0.4);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr auto 0.5fr 1fr;
+    gap: 1rem;
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: start;
+      gap: 1rem;
+      & > * {
+        @include page.sizeH3;
+      }
+    }
+    p {
+      @include page.sizePxxsmall;
+      margin-bottom: 2rem;
+    }
+
+    .searchWrapper {
+      grid-column: 1 / span 1;
+      grid-row: 3 / span 1;
+      position: relative;
+
+      input {
+        background-color: transparent;
+        border: none;
+        outline: 1px solid rgba(c.$font-color-primary, 0.6);
+        padding: 1rem;
+        border-radius: 2rem;
+        width: 100%;
+        text-align: center;
+        color: c.$font-color-primary;
+        @include page.sizePsmall;
+
+        &::placeholder {
+          color: rgba(c.$font-color-primary, 0.4);
+        }
+      }
+      label {
+        position: absolute;
+        top: 0;
+        left: 15%;
+        transform: translateY(-100%);
+        background-color: rgba(c.$color-item-4, 0.2);
+        @include page.sizePxxsmall;
+        padding: 0 1rem;
+      }
+    }
+    .suggestionsList {
+      button {
+        @include page.sizePxxsmall;
+        border-radius: 1rem;
+        color: c.$color-item-2;
+        cursor: pointer;
+      }
+    }
+    .areaMessage {
+      display: flex;
+      flex-direction: column;
+      p {
+        @include page.sizePsmall;
+        text-align: center;
+        white-space: pre-line;
+      }
+    }
+  }
+}

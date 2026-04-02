@@ -28,9 +28,11 @@ export interface MediaItem {
 export interface PrimaryButton {
   text: string;
   link: string;
+  idLink?: string;
 }
 
 export interface SecondaryButton {
   text: string;
   link: string;
+  idLink?: string;
 }
