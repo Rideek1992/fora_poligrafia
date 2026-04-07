@@ -46,7 +46,7 @@ export class ApiBackendCMSService {
   }
 
   getBusinnesPages(slug: string): Observable<ServicePageInterface | null> {
-    const url = `${this.apiUrl}/api/fora-pg-cmses?filters[slug][$eq]=${slug}&populate[businessSection][populate]=*`;
+    const url = `${this.apiUrl}/api/fora-pg-cmses?filters[slug][$eq]=${slug}&populate[businessSection][populate][items][populate]=*`;
 
     return this.http
       .get<ServicePageResponseInterface>(url)

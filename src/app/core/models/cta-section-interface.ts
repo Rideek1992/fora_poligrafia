@@ -5,4 +5,6 @@ export interface CtaSectionInterface {
   primaryButtonLink: string;
   secondaryButtonText: string;
   secondaryButtonLink: string;
+  primaryButtonId: string;
+  secondaryButtonId: string;
 }

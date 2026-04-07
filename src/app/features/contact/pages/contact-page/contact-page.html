@@ -104,7 +104,7 @@
         <div *ngIf="areaMessage" class="areaMessage">
           <p>{{ areaMessage }}</p>
           <app-button-link
-            [idLink]="'form'"
+            [idLink]="'formularz-kontaktowy'"
             [link]="'kontakt'"
             [name]="'napisz do nas'"
           ></app-button-link>
@@ -159,7 +159,7 @@
       współpracy, wyceny, terminów oraz formy kontaktu. To szybki sposób, aby lepiej przygotować się
       do wysłania zapytania.
     </p>
-    <app-fqa-section [fqaData]="dataFQA?.FQAElement"></app-fqa-section>
+    <app-fqa-section [fqaData]="dataFQA"></app-fqa-section>
   </div>
 
   <app-form-section></app-form-section>

@@ -1,13 +1,47 @@
 import { Component } from '@angular/core';
+import { ServicePageInterface } from '../../../../core/models/service-page-interface';
+import { ApiBackendCMSService } from '../../../../core/backendCMS/apiCMS/apiBackendCMS-services';
+import { HeroPage } from '../../../../shared/components/hero-page/hero-page';
+import { LoaderPage } from '../../../../shared/components/loader-page/loader-page';
+import { RouterLink } from '@angular/router';
+import { BuissnesPage } from '../../../../shared/components/buissnes-page/buissnes-page';
+import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
+import { FQASection } from '../../../../core/models/FQA-section-interface';
+import { FqaSection } from '../../../../shared/components/fqa-section/fqa-section';
+import { CtaPage } from '../../../../shared/components/cta-page/cta-page';
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [HeroPage, LoaderPage, RouterLink, BuissnesPage, MiniHeroPage, FqaSection, CtaPage],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
 export class HomePage {
-  elementsNumber: number = 100;
+  dataHome: ServicePageInterface | null | undefined = null;
+  isActive: boolean = false;
+  dataFQAHome: FQASection | null | undefined = null;
 
-  items = Array.from({ length: this.elementsNumber }, (_, i) => i + 1);
+  constructor(private api: ApiBackendCMSService) {}
+
+  ngOnInit() {
+    this.api.getPageData('home').subscribe({
+      next: (data) => {
+        this.dataHome = data;
+        this.isActive = true;
+      },
+      error: (err) => {
+        console.log(err);
+        this.isActive = false;
+      },
+    });
+
+    this.api.getFQAData('home').subscribe({
+      next: (data) => {
+        this.dataFQAHome = data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

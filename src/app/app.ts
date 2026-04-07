@@ -1,7 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuDesctop } from './layout/menu-desctop/menu-desctop';
 import { Footer } from './layout/footer/footer';
+import { SeoService } from './seo/seo-service';
+import { filter, map } from 'rxjs';
+import { SeoInterface } from './core/models/seo-interface';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +12,33 @@ import { Footer } from './layout/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('web');
+
+  constructor(
+    private route: Router,
+    private activeRoute: ActivatedRoute,
+    private serviceSeo: SeoService,
+  ) {}
+
+  ngOnInit() {
+    this.route.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => {
+          let route = this.activeRoute;
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+          return route;
+        }),
+        filter((route) => route.outlet === 'primary'),
+        map((route) => route.snapshot.data['seo'] as SeoInterface | undefined),
+      )
+      .subscribe((seo) => {
+        if (seo) {
+          this.serviceSeo.updateSeo(seo);
+        }
+      });
+  }
 }

@@ -1,1 +1,128 @@
-<p>home page</p>
+@if (isActive) {
+  <app-hero-page [heroData]="dataHome?.heroSection"></app-hero-page>
+  <div class="sectionUSP">
+    <h2>Dlaczego firmy wybierają FORA Poligrafia</h2>
+    <div class="item">
+      <i class="fa-thin fa-boxes-stacked"></i>
+      <h3>Kompleksowa obsługa</h3>
+      <p>Od projektu po gotowy materiał do wdrożenia.</p>
+    </div>
+    <div class="item">
+      <i class="fa-thin fa-briefcase"></i>
+      <h3>Dla firm i marek</h3>
+      <p>Tworzymy rozwiązania dopasowane do biznesu.</p>
+    </div>
+    <div class="item">
+      <i class="fa-thin fa-display"></i>
+      <h3>Druk i online</h3>
+      <p>Łączymy materiały drukowane i internetowe.</p>
+    </div>
+    <div class="item">
+      <i class="fa-thin fa-palette"></i>
+      <h3>Estetyka i funkcjonalność</h3>
+      <p>Projekty mają dobrze wyglądać i dobrze działać.</p>
+    </div>
+  </div>
+  <div class="informationElements">
+    <h2>Usługi, które wspierają rozwój nowoczesnych firm</h2>
+    <p>
+      Tworzymy rozwiązania łączące projekt, druk i nowoczesne wsparcie wizualne. Wybierz obszar,
+      który najlepiej odpowiada potrzebom Twojej firmy.
+    </p>
+    <div class="itemsElement">
+      <div class="item">
+        <a routerLink="projekty-graficzne">
+          <i class="fa-duotone fa-thin fa-palette"></i>
+          <h4>Projekty graficzne</h4></a
+        >
+        <p>
+          Tworzymy materiały wizualne dla firm — od prostych projektów reklamowych po opracowania
+          przygotowane do druku i komunikacji marketingowej.
+        </p>
+      </div>
+      <div class="item">
+        <a routerLink="poligrafia-firmowa">
+          <i class="fa-duotone fa-thin fa-print"></i>
+          <h4>Poligrafia firmowa</h4>
+        </a>
+        <p>
+          Przygotowujemy materiały drukowane wspierające sprzedaż, prezentację marki i codzienną
+          komunikację firmy.
+        </p>
+      </div>
+      <div class="item">
+        <a routerLink="identyfikacja-wizualna">
+          <i class="fa-duotone fa-thin fa-pen-ruler"></i>
+          <h4>Identyfikacja wizualna</h4>
+        </a>
+        <p>
+          Budujemy spójny język wizualny marki, który pomaga firmie wyglądać profesjonalnie i
+          rozpoznawalnie.
+        </p>
+      </div>
+      <div class="item">
+        <a routerLink="identyfikacja-wizualna">
+          <i class="fa-duotone fa-thin fa-globe"></i>
+          <h4>Strony internetowe</h4>
+        </a>
+        <p>
+          Projektujemy nowoczesne strony internetowe dla firm, które budują zaufanie i wspierają
+          pozyskiwanie klientów.
+        </p>
+      </div>
+      <div class="item">
+        <a routerLink="identyfikacja-wizualna">
+          <i class="fa-duotone fa-thin fa-chart-line"></i>
+          <h4>Analiza danych</h4>
+        </a>
+        <p>
+          Pomagamy porządkować dane i przedstawiać je w czytelnej formie, aby wspierały decyzje i
+          rozwój biznesu.
+        </p>
+      </div>
+      <div class="item">
+        <a routerLink="identyfikacja-wizualna">
+          <i class="fa-duotone fa-thin fa-drone-front"></i>
+          <h4>Usługi dronoweh</h4>
+        </a>
+        <p>
+          Wykonujemy ujęcia z drona wspierające prezentację firmy, nieruchomości, inwestycji i
+          materiałów promocyjnych.
+        </p>
+      </div>
+    </div>
+  </div>
+  <app-buissnes-page [buissnessData]="dataHome?.businessSection"></app-buissnes-page>
+  <div class="aboutUsSection">
+    <h2>Za FORA Poligrafia stoi praktyczne doświadczenie i szerokie spojrzenie na potrzeby firm</h2>
+    <p>
+      FORA Poligrafia to marka budowana na praktycznym podejściu do biznesu, komunikacji i
+      codziennych potrzeb firm. Za jej rozwojem stoi doświadczenie związane zarówno z poligrafią,
+      jak i pracą w obszarach rozwojowych firmy logistycznej, gdzie liczy się nie tylko estetyka,
+      ale również funkcjonalność, proces i realne zastosowanie rozwiązań.
+    </p>
+    <p>
+      Dzięki temu patrzymy na projekty szerzej niż z perspektywy jednej usługi. Łączymy kreatywność,
+      zrozumienie biznesu oraz kompleksowe podejście, które pozwala klientowi realizować działania
+      od A do Z — od projektu, przez druk i wdrożenie, aż po dalsze utrzymanie i rozwój. Naszym
+      celem jest tworzenie rozwiązań, które dobrze wyglądają, ale przede wszystkim mają sens w
+      codziennym działaniu firmy.
+    </p>
+  </div>
+  <app-mini-hero-page
+    [miniHeroData]="dataHome?.miniHeroSection"
+    [sideContent]="'left'"
+  ></app-mini-hero-page>
+  <div class="FQASection">
+    <h2>Pytania, które pojawiają się najczęściej</h2>
+    <p>
+      Sprawdź odpowiedzi na najważniejsze pytania dotyczące zakresu usług, sposobu współpracy i
+      możliwości realizacji projektów dla firm.
+    </p>
+    <app-fqa-section [fqaData]="dataFQAHome"></app-fqa-section>
+  </div>
+  <app-cta-page [ctaData]="dataHome?.ctaSection"></app-cta-page>
+}
+@if (!isActive) {
+  <app-loader-page></app-loader-page>
+}

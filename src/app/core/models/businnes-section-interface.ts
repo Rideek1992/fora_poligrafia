@@ -11,5 +11,5 @@ export interface dataItem {
   title: string;
   description: string;
   icon?: string;
-  images?: MediaItem[];
+  image?: MediaItem | null;
 }

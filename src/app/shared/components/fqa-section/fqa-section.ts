@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FQAElement } from '../../../core/models/FQA-section-interface';
+import { FQAElement, FQASection } from '../../../core/models/FQA-section-interface';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -9,7 +9,11 @@ import { NgIf } from '@angular/common';
   styleUrl: './fqa-section.scss',
 })
 export class FqaSection implements OnInit {
-  @Input() fqaData: FQAElement[] | undefined = [];
+  @Input({
+    transform: (value: FQASection | null | undefined): FQAElement[] | undefined =>
+      value?.FQAElement,
+  })
+  fqaData: FQAElement[] | undefined = [];
 
   activeFQA: number = -1;
 

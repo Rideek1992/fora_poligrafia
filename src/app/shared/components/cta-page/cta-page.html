@@ -2,7 +2,8 @@
   <h2>{{ ctaData?.title }}</h2>
   <p>{{ ctaData?.description }}</p>
   <app-button-link
-    [link]="ctaData?.primaryButtonText"
-    [name]="ctaData?.primaryButtonLink"
+    [idLink]="ctaData?.primaryButtonId"
+    [link]="ctaData?.primaryButtonLink"
+    [name]="ctaData?.primaryButtonText"
   ></app-button-link>
 </div>
