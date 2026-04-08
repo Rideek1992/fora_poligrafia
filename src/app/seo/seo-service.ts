@@ -25,6 +25,7 @@ export class SeoService {
     this.metaService.updateTag({ name: 'twitter:title', content: seo.title });
     this.metaService.updateTag({ name: 'twitter:description', content: seo.description });
     this.metaService.updateTag({ name: 'twitter:image', content: seo.image || '' });
+    this.updateCanonicalUrl(seo.canonical);
   }
   private updateCanonicalUrl(url?: string): void {
     if (!url) return;
