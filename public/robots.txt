@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fora-poligrafia.pl/sitemap.xml
