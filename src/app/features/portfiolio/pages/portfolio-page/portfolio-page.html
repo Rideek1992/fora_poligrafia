@@ -1,1 +1,63 @@
-<p>portfolio-page works!</p>
+@if (isActiveSection) {
+  <app-hero-page [heroData]="dataSection?.heroSection"></app-hero-page>
+  <div class="wrapperPortfolio">
+    <h2>Nasze realizacje</h2>
+    <p>
+      Portfolio FORA Poligrafia to zbiór projektów przygotowanych dla firm, które oczekiwały czegoś
+      więcej niż tylko estetycznego efektu. Pokazujemy tutaj realizacje, w których liczyły się
+      zarówno wygląd, czytelność i spójność wizualna, jak i praktyczne zastosowanie w codziennej
+      komunikacji z klientami.
+    </p>
+    <p>
+      Każdy projekt to inne potrzeby, inna branża i inny cel biznesowy. Dlatego w naszych
+      realizacjach znajdziesz zarówno materiały drukowane, projekty graficzne i identyfikację
+      wizualną, jak i strony internetowe oraz rozwiązania dopasowane do konkretnych zastosowań. To
+      miejsce, w którym możesz zobaczyć, jak pracujemy i w jaki sposób przekładamy założenia klienta
+      na gotowy efekt.
+    </p>
+  </div>
+  <div class="menuListElement" id="manu-portfolio">
+    @for (item of categotyElemetn; track $index; let i = $index) {
+      @for (cat of mapCategoryElement; track $index; let i = $index) {
+        @if (item === cat.slug) {
+          <a
+            (click)="getActiveCategory(cat.slug)"
+            [class.active]="cat.slug === activeCategory"
+            [href]="'/portfolio#' + cat.slug"
+            >{{ cat.name }}</a
+          >
+        }
+      }
+    }
+  </div>
+  <div class="elementsPortfolio">
+    @for (item of categotyElemetn; track $index; let i = $index) {
+      @for (cat of mapCategoryElement; track $index; let i = $index) {
+        @if (item === cat.slug) {
+          <div class="sectionItem">
+            <p [id]="cat.slug">{{ cat.name }}</p>
+            <div class="items">
+              @for (element of portfolioData; track element.title; let i = $index) {
+                <div
+                  (click)="goToPortfolio(element)"
+                  *ngIf="element.categoryPage === cat.slug"
+                  class="elementItem"
+                >
+                  <img [src]="addresApi + element.coverImage.image.url" alt="" />
+                  <p>{{ element.title }}</p>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      }
+    }
+  </div>
+
+  <a (click)="getActiveCategory('')" class="buttonMenu" href="/portfolio#manu-portfolio"
+    ><i class="fa-thin fa-up-to-bracket"></i
+  ></a>
+}
+@if (!isActiveSection) {
+  <app-loader-page></app-loader-page>
+}

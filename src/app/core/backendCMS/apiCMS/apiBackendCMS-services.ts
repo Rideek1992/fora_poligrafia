@@ -8,6 +8,7 @@ import {
   PoliticPrivateResponseInterface,
 } from '../../models/politic-private-interface';
 import { FQASection } from '../../models/FQA-section-interface';
+import { PortfolioInterface, PortfolioResponseInterface } from '../../models/portfolio-interface';
 
 export interface ServicePageResponseInterface {
   data: ServicePageInterface[];
@@ -121,5 +122,27 @@ export class ApiBackendCMSService {
     return this.http
       .get<{ data: FQASection[]; meta: any }>(url)
       .pipe(map((response) => response.data[0] ?? null));
+  }
+
+  // funkcje dla seckji portfolio
+
+  getPortfolioData(): Observable<PortfolioInterface[]> {
+    const url = `${this.apiUrl}/api/fora-pg-portfolios?populate[coverImage][populate]=*&populate[seo][populate]=*&populate[galery][populate]=*`;
+
+    return this.http.get<PortfolioResponseInterface>(url).pipe(
+      map((response) => {
+        return response.data ?? [];
+      }),
+    );
+  }
+
+  getOneElementPortfolio(slug: string): Observable<PortfolioInterface[]> {
+    const url = `${this.apiUrl}/api/fora-pg-portfolios?filters[slugName][$eq}=${slug}&populate[coverImage][populate]=*&populate[seo][populate]=*&populate[galery][populate]=*`;
+
+    return this.http.get<PortfolioResponseInterface>(url).pipe(
+      map((response) => {
+        return response.data ?? [];
+      }),
+    );
   }
 }

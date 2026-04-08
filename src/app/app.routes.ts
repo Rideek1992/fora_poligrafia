@@ -185,6 +185,11 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'portfolio/:category/:slug',
+    loadComponent: () =>
+      import('./features/portfolio-item/portfolio-item').then((m) => m.PortfolioItem),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./features/not-page/pages/not-page/not-page').then((m) => m.NotPage),

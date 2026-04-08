@@ -1,0 +1,26 @@
+<div class="heroElement">
+  @if (itemPortfolioSingle?.coverImage?.image?.url) {
+    <img
+      [alt]="itemPortfolioSingle?.coverImage?.alt || itemPortfolioSingle?.title || ''"
+      [src]="addresUrl + itemPortfolioSingle?.coverImage?.image?.url"
+    />
+  }
+  <div class="textInformation">
+    <h4>{{ itemPortfolioSingle?.title }}</h4>
+    <p>{{ itemPortfolioSingle?.shortDescription }}</p>
+    <app-button-link
+      [idLink]="'formularz-kontaktowy'"
+      [link]="'kontakt'"
+      [name]="'Skontaktuj sie z nami'"
+      fragment="lightPhoto"
+    ></app-button-link>
+  </div>
+</div>
+<div class="contentElements">
+  <markdown [data]="itemPortfolioSingle?.content"></markdown>
+  <div class="galerySection">
+    @for (item of itemPortfolioSingle?.galery; track $index) {
+      <img [src]="addresUrl + item.image.url" alt="" />
+    }
+  </div>
+</div>
