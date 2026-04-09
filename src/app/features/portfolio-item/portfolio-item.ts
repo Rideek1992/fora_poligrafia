@@ -7,10 +7,11 @@ import { ButtonLink } from '../../shared/components/button-link/button-link';
 import { MarkdownComponent } from 'ngx-markdown';
 import { SchemaService } from '../../seo/schema/schema.service';
 import { createItemPortfolioSchema } from '../../seo/schema/create.schema';
+import { MiniHeroPage } from '../../shared/components/mini-hero-page/mini-hero-page';
 
 @Component({
   selector: 'app-portfolio-item',
-  imports: [ButtonLink, MarkdownComponent],
+  imports: [ButtonLink, MarkdownComponent, MiniHeroPage],
   templateUrl: './portfolio-item.html',
   styleUrl: './portfolio-item.scss',
 })
@@ -20,6 +21,7 @@ export class PortfolioItem implements OnInit {
   addresUrl = enviroment.apiUrl;
   activeImageIndex: number = -1;
   tagsList: string[] = [];
+  dataportfolio: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +47,14 @@ export class PortfolioItem implements OnInit {
               .map((tag) => tag.trim())
               .filter(Boolean)
           : [];
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+    this.api.getPageData('portfolio').subscribe({
+      next: (data) => {
+        this.dataportfolio = data;
       },
       error: (err) => {
         console.log(err);

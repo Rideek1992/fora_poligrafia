@@ -35,6 +35,22 @@ export class PortfolioPage implements OnInit {
       slug: 'strony-internetowe',
       name: 'Strony internetowe',
     },
+    {
+      slug: 'identyfikacja-wizualna',
+      name: 'Identyfikacja wizualna',
+    },
+    {
+      slug: 'poligrafia-firmowa',
+      name: 'Poligrafia firmowa',
+    },
+    {
+      slug: 'analityka-danych',
+      name: 'Analityka danych',
+    },
+    {
+      slug: 'uslugi-dronowe',
+      name: 'Usługi dronowe',
+    },
   ];
 
   constructor(
@@ -69,6 +85,7 @@ export class PortfolioPage implements OnInit {
         this.categotyElemetn = [...new Set(data?.map((item) => item.categoryPage))];
         this.tagsList = [...new Set(this.portfolioData.flatMap((item) => item.tagLists))];
         this.isActivePortfolio = true;
+        console.log(this.categotyElemetn);
       },
       error: (err) => {
         console.log(err);
