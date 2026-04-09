@@ -18,6 +18,8 @@ export class PortfolioItem implements OnInit {
   itemPortfolioData: PortfolioInterface[] = [];
   itemPortfolioSingle: PortfolioInterface | null = null;
   addresUrl = enviroment.apiUrl;
+  activeImageIndex: number = -1;
+  tagsList: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +39,13 @@ export class PortfolioItem implements OnInit {
       next: (data) => {
         this.itemPortfolioData = data ?? [];
         this.itemPortfolioSingle = data?.[0] ?? null;
+        this.tagsList = this.itemPortfolioSingle?.tags
+          ? this.itemPortfolioSingle.tags
+              .split(',')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+          : [];
+        console.log(this.tagsList);
       },
       error: (err) => {
         console.log(err);
@@ -53,5 +62,16 @@ export class PortfolioItem implements OnInit {
         image: `https://fora-poligrafia.pl${this.itemPortfolioSingle?.coverImage.image.url}`,
       }),
     );
+  }
+
+  openPhotoSwipe(index: number) {
+    if (index === -1) {
+      this.activeImageIndex = -1;
+      document.body.classList.remove('modal-open');
+      return;
+    }
+
+    this.activeImageIndex = index;
+    document.body.classList.add('modal-open');
   }
 }

@@ -17,10 +17,32 @@
   </div>
 </div>
 <div class="contentElements">
-  <markdown [data]="itemPortfolioSingle?.content"></markdown>
+  <h2>Galeria projektu</h2>
   <div class="galerySection">
     @for (item of itemPortfolioSingle?.galery; track $index) {
-      <img [src]="addresUrl + item.image.url" alt="" />
+      <img (click)="openPhotoSwipe($index)" [src]="addresUrl + item.image.url" alt="" />
+      @if (activeImageIndex === $index) {
+        <div class="imageContener">
+          <i (click)="openPhotoSwipe(-1)" class="fa-thin fa-circle-x"></i>
+          <img [alt]="item.alt || ''" [src]="addresUrl + item.image.url" class="" />
+          <div class="elementChange">
+            @for (item of itemPortfolioSingle?.galery; track $index; let i = $index) {
+              <div
+                (click)="openPhotoSwipe($index)"
+                [class.activeItem]="$index === activeImageIndex"
+                class="itemElementSwap"
+              ></div>
+            }
+          </div>
+        </div>
+      }
     }
   </div>
+  <h2>Opis projektu</h2>
+  <markdown [data]="itemPortfolioSingle?.content"></markdown>
+</div>
+<div class="hashElement">
+  @for (item of tagsList; track $index; let i = $index) {
+    <p>#{{ item }}</p>
+  }
 </div>

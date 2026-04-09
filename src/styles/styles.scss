@@ -1,2 +1,7 @@
 @use 'base/reset';
 @use 'abstracts/colors';
+
+body.modal-open {
+  overflow: hidden;
+  touch-action: none;
+}
