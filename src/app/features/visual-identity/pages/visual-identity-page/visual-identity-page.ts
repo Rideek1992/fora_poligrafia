@@ -9,6 +9,9 @@ import { BenefitsPage } from '../../../../shared/components/benefits-page/benefi
 import { TargetPage } from '../../../../shared/components/target-page/target-page';
 import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
 import { CtaPage } from '../../../../shared/components/cta-page/cta-page';
+import { SchemaService } from '../../../../seo/schema/schema.service';
+import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
+import { createServiceSchema } from '../../../../seo/schema/create.schema';
 
 @Component({
   selector: 'app-visual-identity-page',
@@ -29,9 +32,13 @@ export class VisualIdentityPage implements OnInit {
   dataVisualIdf: ServicePageInterface | null | undefined = null;
   isActive: boolean = false;
 
-  constructor(private api: ApiBackendCMSService) {}
+  constructor(
+    private api: ApiBackendCMSService,
+    private schemaService: SchemaService,
+  ) {}
 
   ngOnInit(): void {
+    this.schemaService.updateSchema(createServiceSchema(ELEMENTS_SCHEMA.identyfikacjaWizualnaPage));
     this.api.getPageData('identyfikacja-wizualna').subscribe({
       next: (data) => {
         this.dataVisualIdf = data;

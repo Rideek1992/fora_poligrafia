@@ -4,6 +4,9 @@ import { PoliticPrivateInterface } from '../../../../core/models/politic-private
 import { MarkdownComponent } from 'ngx-markdown';
 import { HeroPage } from '../../../../shared/components/hero-page/hero-page';
 import { ServicePageInterface } from '../../../../core/models/service-page-interface';
+import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
+import { createPageSchema } from '../../../../seo/schema/create.schema';
+import { SchemaService } from '../../../../seo/schema/schema.service';
 
 @Component({
   selector: 'app-private-policy-page',
@@ -15,9 +18,13 @@ export class PrivatePolicyPage implements OnInit {
   dataPolitic: PoliticPrivateInterface | null = null;
   dataPagePolitic: ServicePageInterface | null = null;
 
-  constructor(private api: ApiBackendCMSService) {}
+  constructor(
+    private api: ApiBackendCMSService,
+    private SchemaService: SchemaService,
+  ) {}
 
   ngOnInit(): void {
+    this.SchemaService.updateSchema(createPageSchema(ELEMENTS_SCHEMA.politykaPrywatnosci));
     this.api.getPoliticPrivacy().subscribe({
       next: (data) => {
         this.dataPolitic = data;

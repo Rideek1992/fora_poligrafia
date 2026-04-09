@@ -5,6 +5,8 @@ import { PortfolioInterface } from '../../core/models/portfolio-interface';
 import { enviroment } from '../../../enviroment';
 import { ButtonLink } from '../../shared/components/button-link/button-link';
 import { MarkdownComponent } from 'ngx-markdown';
+import { SchemaService } from '../../seo/schema/schema.service';
+import { createItemPortfolioSchema } from '../../seo/schema/create.schema';
 
 @Component({
   selector: 'app-portfolio-item',
@@ -20,6 +22,7 @@ export class PortfolioItem implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private api: ApiBackendCMSService,
+    private schema: SchemaService,
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +42,16 @@ export class PortfolioItem implements OnInit {
         console.log(err);
       },
     });
+
+    this.schema.updateSchema(
+      createItemPortfolioSchema({
+        title: this.itemPortfolioSingle?.title ?? '',
+        description: this.itemPortfolioSingle?.shortDescription ?? '',
+        url: `https://fora-poligrafia.pl/portfolio/${this.itemPortfolioSingle?.categoryPage}/${this.itemPortfolioSingle?.slugName}`,
+        categoryName: this.itemPortfolioSingle?.categoryPage,
+        categoryUrl: `https://fora-poligrafia.pl/portfolio#${this.itemPortfolioSingle?.categoryPage}`,
+        image: `https://fora-poligrafia.pl${this.itemPortfolioSingle?.coverImage.image.url}`,
+      }),
+    );
   }
 }

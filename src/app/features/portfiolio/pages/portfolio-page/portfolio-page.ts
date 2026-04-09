@@ -6,6 +6,9 @@ import { LoaderPage } from '../../../../shared/components/loader-page/loader-pag
 import { NgIf } from '@angular/common';
 import { enviroment } from '../../../../../enviroment';
 import { Router } from '@angular/router';
+import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
+import { createPageSchema } from '../../../../seo/schema/create.schema';
+import { SchemaService } from '../../../../seo/schema/schema.service';
 
 @Component({
   selector: 'app-portfolio-page',
@@ -37,9 +40,11 @@ export class PortfolioPage implements OnInit {
   constructor(
     private api: ApiBackendCMSService,
     private router: Router,
+    private SchemaService: SchemaService,
   ) {}
 
   ngOnInit() {
+    this.SchemaService.updateSchema(createPageSchema(ELEMENTS_SCHEMA.portfolioPage));
     this.api.getPageData('portfolio').subscribe(
       (data) => {
         this.dataSection = data;

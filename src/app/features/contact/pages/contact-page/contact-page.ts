@@ -11,6 +11,9 @@ import { ButtonLink } from '../../../../shared/components/button-link/button-lin
 import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
 import { FQASection } from '../../../../core/models/FQA-section-interface';
 import { FqaSection } from '../../../../shared/components/fqa-section/fqa-section';
+import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
+import { createPageSchema } from '../../../../seo/schema/create.schema';
+import { SchemaService } from '../../../../seo/schema/schema.service';
 
 @Component({
   selector: 'app-contact-page',
@@ -41,7 +44,10 @@ export class ContactPage implements OnInit {
 
   activeLookNumber: number = 0;
 
-  constructor(private api: ApiBackendCMSService) {}
+  constructor(
+    private api: ApiBackendCMSService,
+    private schemaService: SchemaService,
+  ) {}
 
   normalizeText(value: string): string {
     return value
@@ -89,6 +95,7 @@ export class ContactPage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.schemaService.updateSchema(createPageSchema(ELEMENTS_SCHEMA.kontaktPage));
     this.api.getPageData('kontakt').subscribe({
       next: (data) => {
         this.data = data;

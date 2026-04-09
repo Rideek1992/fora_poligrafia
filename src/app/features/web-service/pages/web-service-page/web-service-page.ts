@@ -9,6 +9,9 @@ import { CtaPage } from '../../../../shared/components/cta-page/cta-page';
 import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
 import { BenefitsPage } from '../../../../shared/components/benefits-page/benefits-page';
 import { TargetPage } from '../../../../shared/components/target-page/target-page';
+import { createServiceSchema } from '../../../../seo/schema/create.schema';
+import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
+import { SchemaService } from '../../../../seo/schema/schema.service';
 
 @Component({
   selector: 'app-web-service-page',
@@ -29,9 +32,13 @@ export class WebServicePage implements OnInit {
   webServiceData: ServicePageInterface | null | undefined = null;
   isActive: boolean = false;
 
-  constructor(private api: ApiBackendCMSService) {}
+  constructor(
+    private api: ApiBackendCMSService,
+    private schemaService: SchemaService,
+  ) {}
 
   ngOnInit(): void {
+    this.schemaService.updateSchema(createServiceSchema(ELEMENTS_SCHEMA.stronyInternetowePage));
     this.api.getPageData('strony-internetowe').subscribe({
       next: (data) => {
         this.webServiceData = data;

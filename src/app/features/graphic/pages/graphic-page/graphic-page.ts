@@ -9,6 +9,9 @@ import { TargetPage } from '../../../../shared/components/target-page/target-pag
 import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
 import { CtaPage } from '../../../../shared/components/cta-page/cta-page';
 import { LoaderPage } from '../../../../shared/components/loader-page/loader-page';
+import { SchemaService } from '../../../../seo/schema/schema.service';
+import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
+import { createServiceSchema } from '../../../../seo/schema/create.schema';
 
 @Component({
   selector: 'app-graphic-page',
@@ -29,9 +32,13 @@ export class GraphicPage implements OnInit {
   isLoading = false;
   pageData: ServicePageInterface | null = null;
 
-  constructor(private api: ApiBackendCMSService) {}
+  constructor(
+    private api: ApiBackendCMSService,
+    private schemaService: SchemaService,
+  ) {}
 
   ngOnInit(): void {
+    this.schemaService.updateSchema(createServiceSchema(ELEMENTS_SCHEMA.projektyGraficznePage));
     this.api.getPageData('projekty-graficzne').subscribe({
       next: (item) => {
         this.pageData = item;

@@ -9,6 +9,9 @@ import { TargetPage } from '../../../../shared/components/target-page/target-pag
 import { MiniHeroPage } from '../../../../shared/components/mini-hero-page/mini-hero-page';
 import { CtaPage } from '../../../../shared/components/cta-page/cta-page';
 import { LoaderPage } from '../../../../shared/components/loader-page/loader-page';
+import { SchemaService } from '../../../../seo/schema/schema.service';
+import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
+import { createServiceSchema } from '../../../../seo/schema/create.schema';
 
 @Component({
   selector: 'app-printing-page',
@@ -29,9 +32,14 @@ export class PrintingPage implements OnInit {
   dataPrint: ServicePageInterface | null = null;
   isLoading = false;
 
-  constructor(private api: ApiBackendCMSService) {}
+  constructor(
+    private api: ApiBackendCMSService,
+    private schemaService: SchemaService,
+  ) {}
 
   ngOnInit(): void {
+    this.schemaService.updateSchema(createServiceSchema(ELEMENTS_SCHEMA.poligrafiaFirmowaPage));
+
     this.api.getPageData('poligrafia-firmowa').subscribe({
       next: (item) => {
         this.dataPrint = item;
