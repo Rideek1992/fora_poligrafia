@@ -45,7 +45,6 @@ export class PortfolioItem implements OnInit {
               .map((tag) => tag.trim())
               .filter(Boolean)
           : [];
-        console.log(this.tagsList);
       },
       error: (err) => {
         console.log(err);

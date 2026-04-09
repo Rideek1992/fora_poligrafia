@@ -14,6 +14,7 @@ import { FqaSection } from '../../../../shared/components/fqa-section/fqa-sectio
 import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
 import { createPageSchema } from '../../../../seo/schema/create.schema';
 import { SchemaService } from '../../../../seo/schema/schema.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact-page',
@@ -47,6 +48,7 @@ export class ContactPage implements OnInit {
   constructor(
     private api: ApiBackendCMSService,
     private schemaService: SchemaService,
+    private route: ActivatedRoute,
   ) {}
 
   normalizeText(value: string): string {
@@ -100,6 +102,7 @@ export class ContactPage implements OnInit {
       next: (data) => {
         this.data = data;
         this.isActive = true;
+        this.scrollToFragment();
       },
       error: (err) => {
         console.log(err);
@@ -114,6 +117,20 @@ export class ContactPage implements OnInit {
       error: (err) => {
         console.log(err);
       },
+    });
+  }
+
+  private scrollToFragment(): void {
+    this.route.fragment.subscribe((fragment) => {
+      if (!fragment) return;
+
+      setTimeout(() => {
+        const element = document.getElementById(fragment);
+        element?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 300);
     });
   }
 }
