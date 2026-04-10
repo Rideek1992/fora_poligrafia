@@ -1,4 +1,5 @@
 @use '../styles/abstracts/colors' as c;
+@use 'abstracts/view' as view;
 
 :host {
   position: relative;
@@ -14,6 +15,10 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 4rem auto auto auto 1fr;
   grid-gap: 3rem 1rem;
+
+  @include view.mobile {
+    display: none;
+  }
 }
 
 .logoElement {

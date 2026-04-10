@@ -1,5 +1,6 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'abstracts/view' as view;
 
 :host {
   @include page.mainLayout;

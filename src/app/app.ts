@@ -6,10 +6,11 @@ import { SeoService } from './seo/seo-service';
 import { filter, map } from 'rxjs';
 import { SeoInterface } from './core/models/seo-interface';
 import { ViewportScroller } from '@angular/common';
+import { MenuMobile } from './layout/menu-mobile/menu-mobile';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MenuDesctop, Footer],
+  imports: [RouterOutlet, MenuDesctop, Footer, MenuMobile],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
