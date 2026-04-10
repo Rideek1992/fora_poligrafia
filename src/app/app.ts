@@ -5,6 +5,7 @@ import { Footer } from './layout/footer/footer';
 import { SeoService } from './seo/seo-service';
 import { filter, map } from 'rxjs';
 import { SeoInterface } from './core/models/seo-interface';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class App implements OnInit {
     private route: Router,
     private activeRoute: ActivatedRoute,
     private serviceSeo: SeoService,
+    private viewportScroller: ViewportScroller,
   ) {}
 
   ngOnInit() {
@@ -40,5 +42,7 @@ export class App implements OnInit {
           this.serviceSeo.updateSeo(seo);
         }
       });
+
+    this.viewportScroller.setOffset([0, 120]);
   }
 }

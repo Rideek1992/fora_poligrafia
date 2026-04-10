@@ -28,7 +28,7 @@
   gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
-  scroll-margin: 10rem;
+  scroll-margin-top: 10rem;
 
   a {
     color: c.$font-color-primary;
@@ -102,7 +102,7 @@
 
     p {
       grid-column: 1 / -1;
-      scroll-margin: 10rem;
+      scroll-margin-top: 10rem;
       @include page.sizeH3;
     }
   }
