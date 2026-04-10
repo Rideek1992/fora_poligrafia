@@ -1,5 +1,6 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'abstracts/view' as view;
 
 :host {
   @include page.pageLayout;
@@ -11,6 +12,11 @@
   grid-template-columns: 1fr;
   grid-gap: 2rem;
   scroll-margin-top: 10rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -19,6 +25,9 @@
 
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
 }
 
@@ -27,6 +36,10 @@
   grid-template-columns: 1fr 2fr;
   grid-gap: 0;
   margin-top: 3rem;
+  @include view.mobile {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
   .informationUser {
     grid-column: 1 / span 1;
     display: grid;
@@ -47,6 +60,9 @@
         border: none;
         outline: 1px solid rgba(c.$font-color-primary, 0.6);
         color: c.$font-color-primary;
+        @include view.mobile {
+          width: 100%;
+        }
         &:required.ng-touched.ng-valid {
           outline-color: c.$color-primary;
         }

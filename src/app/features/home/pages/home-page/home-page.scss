@@ -1,5 +1,6 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'abstracts/view' as view;
 
 :host {
   @include page.mainLayout;
@@ -11,6 +12,13 @@
   flex-direction: column;
   grid-gap: 2rem;
   grid-template-columns: repeat(4, 1fr);
+  @include view.mobile {
+    width: 100vw;
+    grid-column: 1 / -1;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -55,6 +63,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -116,6 +129,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -124,6 +142,9 @@
 
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
 }
 
@@ -132,6 +153,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;

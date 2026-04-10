@@ -1,6 +1,7 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
 @use 'sass:color';
+@use 'abstracts/view' as view;
 
 :host {
   @include page.mainLayout;
@@ -11,13 +12,24 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;
     text-align: center;
+    @include view.mobile {
+      text-align: center;
+    }
   }
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
 }
 
@@ -25,6 +37,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  }
 
   .itemContact {
     display: grid;
@@ -99,6 +115,9 @@
       display: grid;
       grid-template-columns: 1fr 0.8fr;
       gap: 1rem;
+      @include view.mobile {
+        grid-template-columns: 1fr;
+      }
       p {
         grid-column: 1 / span 1;
         @include page.sizeP;
@@ -122,6 +141,11 @@
     grid-template-columns: 1fr;
     grid-template-rows: 0.3fr auto 0.5fr 1fr;
     gap: 1rem;
+    @include view.mobile {
+      grid-column: 1 / -1;
+      grid-row: 4 / span 1;
+      min-height: 40rem;
+    }
 
     .header {
       display: flex;
@@ -174,11 +198,16 @@
         border-radius: 1rem;
         color: c.$color-item-2;
         cursor: pointer;
+        @include view.mobile {
+          margin-left: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
       }
     }
     .areaMessage {
       display: flex;
       flex-direction: column;
+      gap: 1rem;
       p {
         @include page.sizePsmall;
         text-align: center;
@@ -193,6 +222,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -201,6 +235,9 @@
 
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
 
   .elementsLook {
@@ -208,6 +245,21 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
+    @include view.mobile {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, auto);
+      grid-gap: 2rem;
+
+      .itemLook .itemNumber_0 {
+        grid-row: 1 / span 1;
+      }
+      .itemLook .itemNumber_1 {
+        grid-row: 2 / span 1;
+      }
+      .itemLook .itemNumber_2 {
+        grid-row: 3 / span 1;
+      }
+    }
 
     .itemLook {
       grid-row: 1 / span 1;
@@ -216,6 +268,13 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
+      @include view.mobile {
+        display: grid;
+        grid-template-columns: 0.2fr 1fr;
+        grid-column: 1 / span 1;
+        grid-row: auto;
+        margin-left: 2rem;
+      }
 
       i {
         @include page.sizeH2;
@@ -247,6 +306,9 @@
       outline: 1px solid rgba(c.$color-primary, 0.3);
       border-radius: 2rem;
       background-color: rgba(c.$color-primary, 0.05);
+      @include view.mobile {
+        grid-row: 4 / span 1;
+      }
     }
   }
 }
@@ -256,12 +318,20 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
   h2 {
     @include page.sizeH2;
     text-align: center;
   }
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
   .elementsDetails {
     display: grid;
@@ -320,6 +390,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -328,5 +403,8 @@
   }
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
 }

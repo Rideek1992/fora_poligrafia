@@ -11,6 +11,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -19,6 +24,9 @@
 
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
 }
 
@@ -30,6 +38,12 @@
   justify-content: center;
   flex-wrap: wrap;
   scroll-margin-top: 10rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
 
   a {
     color: c.$font-color-primary;
@@ -53,6 +67,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 4rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   .sectionItem {
     display: grid;
@@ -64,6 +83,9 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 2rem;
+      @include view.mobile {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
       .elementItem {
         position: relative;
@@ -97,6 +119,9 @@
           text-align: center;
           padding: 2rem 1rem;
           background-color: rgba(c.$color-secondary, 0.5);
+          @include view.mobile {
+            @include page.sizeH4Mobile;
+          }
         }
       }
     }
@@ -126,6 +151,9 @@
   border-radius: 50%;
   background-color: rgba(c.$color-primary, 0.2);
   transition: background-color 0.3s ease-in-out;
+  @include view.mobile {
+    bottom: 10rem;
+  }
 
   &:hover {
     background-color: rgba(c.$color-primary, 0.5);

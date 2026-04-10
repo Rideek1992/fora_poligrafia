@@ -55,6 +55,7 @@ export class PortfolioItem implements OnInit {
     this.api.getPageData('portfolio').subscribe({
       next: (data) => {
         this.dataportfolio = data;
+        console.log(this.dataportfolio);
       },
       error: (err) => {
         console.log(err);

@@ -1,12 +1,20 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'abstracts/view' as view;
 
 :host {
   @include page.mainLayout;
+  @include view.mobile {
+  }
 }
 
 .wrapperPolicy {
   grid-column: 2 / -2;
+  @include view.mobile {
+    width: 100vw;
+    grid-column: 1 / -1;
+    padding: 0 2rem;
+  }
 }
 
 ::ng-deep markdown {

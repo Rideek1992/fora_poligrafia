@@ -1,8 +1,13 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'abstracts/view' as view;
 
 :host {
   @include page.pageLayout;
+
+  @include view.mobile {
+    width: 100vw;
+  }
 }
 
 .wrapperCTA {
@@ -18,5 +23,8 @@
   }
   p {
     @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
   }
 }

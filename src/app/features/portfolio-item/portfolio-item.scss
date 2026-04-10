@@ -1,5 +1,6 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'abstracts/view' as view;
 
 :host {
   @include page.mainLayout;
@@ -12,6 +13,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  @include view.mobile {
+    height: 80vh;
+    grid-template-columns: 1fr;
+  }
 
   .textInformation {
     position: relative;
@@ -23,12 +28,23 @@
     align-items: end;
     flex-direction: column;
     gap: 1rem;
+    @include view.mobile {
+      grid-column: 1 / -1;
+      gap: 0;
+      width: 100vw;
+    }
 
     h4 {
       @include page.sizeH3;
       padding: 1rem 4rem;
       border-radius: 2rem 0 0 2rem;
       background-color: rgba(c.$color-secondary, 0.8);
+      @include view.mobile {
+        grid-column: 1 / -1;
+        width: 100%;
+        border-radius: 0;
+        text-align: center;
+      }
     }
 
     p {
@@ -40,6 +56,18 @@
       border-radius: 2rem 0 0 2rem;
       background-color: rgba(c.$font-color-primary, 0.8);
       color: c.$font-color-secondary;
+      @include view.mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 2rem;
+        grid-column: 1 / -1;
+        border-radius: 0;
+        min-width: auto;
+        max-width: anchor-size();
+        text-align: center;
+        @include page.sizePsmall;
+      }
     }
 
     ::ng-deep app-button-link {
@@ -60,6 +88,9 @@
     left: 0;
     z-index: 1;
     opacity: 0.8;
+    @include view.mobile {
+      width: 100vw;
+    }
   }
 }
 
@@ -68,6 +99,9 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    width: 100vw;
+  }
 
   h2 {
     grid-column: 1 / -1;
@@ -140,6 +174,9 @@
     background-color: rgba(c.$font-color-primary, 0.7);
     backdrop-filter: blur(1rem);
     -webkit-backdrop-filter: blur(8px);
+    @include view.mobile {
+      grid-template-rows: 5rem 1fr 5rem 0.2fr;
+    }
 
     i {
       position: absolute;
@@ -176,6 +213,10 @@
       grid-column: 2 /-2;
       grid-row: 2 / -2;
       cursor: default;
+      @include view.mobile {
+        grid-column: 1 / -1;
+        grid-row: 2 / span 1;
+      }
     }
 
     .elementChange {
@@ -185,6 +226,9 @@
       justify-content: center;
       align-items: center;
       gap: 1rem;
+      @include view.mobile {
+        grid-row: 3 / span 1;
+      }
 
       .itemElementSwap {
         width: 1rem;
@@ -193,6 +237,10 @@
         border-radius: 50%;
         cursor: pointer;
         transition: background-color 0.3s ease-in-out;
+        @include view.mobile {
+          width: 2rem;
+          height: 2rem;
+        }
       }
       .activeItem {
         background-color: rgba(c.$font-color-secondary, 0.9);
@@ -208,6 +256,10 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  @include view.mobile {
+    width: 100vw;
+    padding: 0 1rem;
+  }
 
   p {
     color: c.$font-color-primary;

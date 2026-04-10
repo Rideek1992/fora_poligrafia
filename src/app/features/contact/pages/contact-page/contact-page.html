@@ -121,7 +121,7 @@
     </p>
     <div class="elementsLook">
       @for (item of env.cooperationLookData; track $index; let i = $index) {
-        <div (click)="changeLookNumber(i)" class="itemLook">
+        <div (click)="changeLookNumber(i)" [class]="'itemLook itemNumber_' + i">
           <i [class.active]="activeLookNumber === i" class="{{ item.icon }}"></i>
           <h3>
             <span>{{ i + 1 }}. </span>{{ item.title }}
