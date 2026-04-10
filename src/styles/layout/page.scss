@@ -49,3 +49,33 @@
   font-size: 1.3rem;
   font-weight: 100;
 }
+
+@mixin sizeH1Mobile {
+  font-size: 2.2rem;
+  font-weight: 100;
+}
+
+@mixin sizeH2Mobile {
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+@mixin sizeH3Mobile {
+  font-size: 1.8rem;
+  font-weight: 100;
+}
+
+@mixin sizePMobile {
+  font-size: 1.8rem;
+  font-weight: 100;
+}
+
+@mixin sizeH4Mobile {
+  font-size: 1.1rem;
+  font-weight: 100;
+}
+
+@mixin sizePxxsmallMobile {
+  font-size: 0.9rem;
+  font-weight: 100;
+}

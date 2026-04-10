@@ -22,11 +22,15 @@ export class MenuMobile implements OnInit {
 
   ngOnInit(): void {
     this.menuElementMobile = this.MenuService.getActiveMenuElements();
-    console.log(this.menuElementMobile);
     this.secMenuElementMobile = this.secMenu.getActiveSecMenuElements();
   }
 
   openMenu() {
     this.activeMenu = !this.activeMenu;
+  }
+
+  goToLink(link: string) {
+    void this.router.navigate([link]);
+    this.activeMenu = false;
   }
 }

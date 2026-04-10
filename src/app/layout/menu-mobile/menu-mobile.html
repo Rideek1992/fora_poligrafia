@@ -1,8 +1,8 @@
 <div [class.active]="activeMenu === true" class="wrapperMobileMenu">
   <div class="menuElement">
     <i (click)="openMenu()" class="fa-thin fa-bars"></i>
-    <div class="logoElement"></div>
-    <i class="fa-thin fa-address-book"></i>
+    <div (click)="goToLink('/')" class="logoElement"></div>
+    <i (click)="goToLink('/kontakt')" class="fa-thin fa-address-book"></i>
   </div>
   <div class="itemList">
     <div class="menuMainElements">

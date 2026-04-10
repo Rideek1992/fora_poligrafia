@@ -1,4 +1,6 @@
 @use '../../../../styles/abstracts/colors' as c;
+@use 'page' as page;
+@use 'abstracts/view' as view;
 
 .heroSection {
   height: 60vh;
@@ -8,7 +10,15 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  //transform: translateX(100%);
+
+  @include view.mobile {
+    height: 80vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr repeat(3, auto) 0.2fr;
+    grid-gap: 1rem 0;
+  }
 
   &.topPosition {
     background-position: top;
@@ -24,6 +34,16 @@
     border-radius: 0 2rem 2rem 0;
     background-color: rgba(c.$font-color-primary, 0.8);
     text-align: center;
+
+    @include view.mobile {
+      @include page.sizeH2Mobile;
+      grid-column: 1 / -1;
+      justify-self: start;
+      align-self: center;
+      text-align: center;
+      width: 100%;
+      border-radius: 0;
+    }
   }
 
   p {
@@ -34,6 +54,13 @@
     border-radius: 0 2rem 2rem 0;
     background-color: rgba(c.$font-color-secondary, 0.8);
     align-self: start;
+
+    @include view.mobile {
+      grid-column: 1 / -1;
+      @include page.sizePMobile;
+      border-radius: 0;
+      text-align: center;
+    }
   }
 
   ::ng-deep app-button-link {

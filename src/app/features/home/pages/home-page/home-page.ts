@@ -31,9 +31,6 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(ELEMENTS_SCHEMA.homePage);
-    console.log(createPageSchema(ELEMENTS_SCHEMA.homePage));
-
     this.schemaService.updateSchema(createPageSchema(ELEMENTS_SCHEMA.homePage));
 
     this.api.getPageData('home').subscribe({

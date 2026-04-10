@@ -1,8 +1,13 @@
 @use 'abstracts/colors' as c;
 @use 'page' as page;
+@use 'abstracts/view' as view;
 
 :host {
   grid-column: 1 / -1;
+
+  @include view.mobile {
+    width: 100vw;
+  }
 }
 
 .wrapperScope {
@@ -16,6 +21,16 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100vw;
+    padding: 0 2rem;
+  }
 
   h2 {
     @include page.sizeH2;
@@ -24,6 +39,11 @@
 
   p {
     @include page.sizeP;
+    @include view.mobile {
+      width: 100%;
+      //text-align: center;
+      //padding: 0 2rem;
+    }
   }
 }
 
@@ -39,16 +59,33 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
 
+  @include view.mobile {
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  }
+
   .information {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 0 2rem;
+    @include view.mobile {
+      width: 100vw;
+      padding: 0 1rem;
+      gap: 1rem;
+    }
     h3 {
       @include page.sizeH3;
+      @include view.mobile {
+        text-align: center;
+        @include page.sizeH2Mobile;
+      }
     }
     p {
       @include page.sizePsmall;
+      @include view.mobile {
+        text-align: center;
+      }
     }
   }
 
@@ -61,16 +98,28 @@
     object-fit: cover;
     object-position: center;
     border-radius: 0 2rem 2rem 0;
+
+    @include view.mobile {
+      border-radius: 0;
+    }
   }
   .rightElement {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     border-radius: 2rem 0 0 2rem;
+    @include view.mobile {
+      grid-column: 1 / -1;
+      border-radius: 0;
+    }
   }
 }
 
 :host ::ng-deep {
   .markdownWrapper {
+    @include view.mobile {
+      padding: 0 1rem;
+    }
+
     ul,
     ol {
       display: flex;
@@ -78,6 +127,9 @@
       gap: 1rem;
       list-style: none;
       justify-content: center;
+      @include view.mobile {
+        text-align: start;
+      }
 
       li {
         @include page.sizePsmall;

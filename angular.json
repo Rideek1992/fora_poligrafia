@@ -20,6 +20,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "security": {
+              "allowedHosts": ["192.168.0.172", "localhost"]
+            },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -71,6 +74,10 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "host": "0.0.0.0",
+            "allowedHosts": ["192.168.0.172", "localhost"]
+          },
           "configurations": {
             "production": {
               "buildTarget": "web:build:production"
