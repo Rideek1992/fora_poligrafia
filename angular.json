@@ -21,7 +21,12 @@
           "builder": "@angular/build:application",
           "options": {
             "security": {
-              "allowedHosts": ["192.168.0.172", "localhost"]
+              "allowedHosts": [
+                "192.168.0.172",
+                "localhost",
+                "fora-poligrafia.pl",
+                "www.fora-poligrafia.pl"
+              ]
             },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
@@ -76,7 +81,12 @@
           "builder": "@angular/build:dev-server",
           "options": {
             "host": "0.0.0.0",
-            "allowedHosts": ["192.168.0.172", "localhost"]
+            "allowedHosts": [
+              "192.168.0.172",
+              "localhost",
+              "fora-poligrafia.pl",
+              "www.fora-poligrafia.pl"
+            ]
           },
           "configurations": {
             "production": {
