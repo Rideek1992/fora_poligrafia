@@ -7,7 +7,7 @@ export interface SeoInterface {
   robots?: string;
   type?: string;
   author?: string;
-  publisherTime: string;
-  modifiedTime: string;
+  publisherTime?: string;
+  modifiedTime?: string;
   section?: string;
 }

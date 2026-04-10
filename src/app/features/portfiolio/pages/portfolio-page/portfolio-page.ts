@@ -85,7 +85,6 @@ export class PortfolioPage implements OnInit {
         this.categotyElemetn = [...new Set(data?.map((item) => item.categoryPage))];
         this.tagsList = [...new Set(this.portfolioData.flatMap((item) => item.tagLists))];
         this.isActivePortfolio = true;
-        console.log(this.categotyElemetn);
       },
       error: (err) => {
         console.log(err);

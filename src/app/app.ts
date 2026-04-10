@@ -36,14 +36,21 @@ export class App implements OnInit {
           return route;
         }),
         filter((route) => route.outlet === 'primary'),
-        map((route) => route.snapshot.data['seo'] as SeoInterface | undefined),
       )
-      .subscribe((seo) => {
+      .subscribe((route) => {
+        const slug = route.snapshot.paramMap.get('slug');
+        const category = route.snapshot.paramMap.get('category');
+
+        // portfolio item ma SEO z CMS, więc nie nadpisujemy go z route.data
+        if (slug && category) {
+          return;
+        }
+
+        const seo = route.snapshot.data['seo'] as SeoInterface | undefined;
+
         if (seo) {
           this.serviceSeo.updateSeo(seo);
         }
       });
-
-    this.viewportScroller.setOffset([0, 120]);
   }
 }

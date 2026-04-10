@@ -8,6 +8,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 import { SchemaService } from '../../seo/schema/schema.service';
 import { createItemPortfolioSchema } from '../../seo/schema/create.schema';
 import { MiniHeroPage } from '../../shared/components/mini-hero-page/mini-hero-page';
+import { SeoService } from '../../seo/seo-service';
 
 @Component({
   selector: 'app-portfolio-item',
@@ -27,6 +28,7 @@ export class PortfolioItem implements OnInit {
     private route: ActivatedRoute,
     private api: ApiBackendCMSService,
     private schema: SchemaService,
+    private seo: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,14 @@ export class PortfolioItem implements OnInit {
               .map((tag) => tag.trim())
               .filter(Boolean)
           : [];
+
+        const seoData = this.itemPortfolioSingle?.seo;
+
+        this.seo.updateSeo({
+          title: seoData?.metaTitle,
+          description: seoData?.metaDescription,
+          keywords: seoData?.metaKeywords,
+        });
       },
       error: (err) => {
         console.log(err);
@@ -55,7 +65,6 @@ export class PortfolioItem implements OnInit {
     this.api.getPageData('portfolio').subscribe({
       next: (data) => {
         this.dataportfolio = data;
-        console.log(this.dataportfolio);
       },
       error: (err) => {
         console.log(err);

@@ -43,7 +43,9 @@
                   *ngIf="element.categoryPage === cat.slug"
                   class="elementItem"
                 >
-                  <img [src]="addresApi + element.coverImage.image.url" alt="" loading="lazy" />
+                  @if (element.coverImage.image.url) {
+                    <img [src]="addresApi + element.coverImage.image.url" alt="" loading="lazy" />
+                  }
                   <p>{{ element.title }}</p>
                 </div>
               }
