@@ -20,34 +20,27 @@
   <h2>Galeria projektu</h2>
   <div class="galerySection">
     @for (item of itemPortfolioSingle?.galery; track $index) {
-      @if (item.image?.url) {
-        <img
-          (click)="openPhotoSwipe($index)"
-          [src]="addresUrl + item.image.url"
-          alt=""
-          loading="lazy"
-        />
+      <img
+        (click)="openPhotoSwipe($index)"
+        [src]="addresUrl + item.image.url"
+        alt=""
+        loading="lazy"
+      />
 
-        @if (activeImageIndex === $index) {
-          <div class="imageContener">
-            <i (click)="openPhotoSwipe(-1)" class="fa-thin fa-circle-x"></i>
-            <img
-              [alt]="item.alt || ''"
-              [src]="addresUrl + item.image.url"
-              class=""
-              loading="lazy"
-            />
-            <div class="elementChange">
-              @for (item of itemPortfolioSingle?.galery; track $index; let i = $index) {
-                <div
-                  (click)="openPhotoSwipe($index)"
-                  [class.activeItem]="$index === activeImageIndex"
-                  class="itemElementSwap"
-                ></div>
-              }
-            </div>
+      @if (activeImageIndex === $index) {
+        <div class="imageContener">
+          <i (click)="openPhotoSwipe(-1)" class="fa-thin fa-circle-x"></i>
+          <img [alt]="item.alt || ''" [src]="addresUrl + item.image.url" class="" loading="lazy" />
+          <div class="elementChange">
+            @for (item of itemPortfolioSingle?.galery; track $index; let i = $index) {
+              <div
+                (click)="openPhotoSwipe($index)"
+                [class.activeItem]="$index === activeImageIndex"
+                class="itemElementSwap"
+              ></div>
+            }
           </div>
-        }
+        </div>
       }
     }
   </div>

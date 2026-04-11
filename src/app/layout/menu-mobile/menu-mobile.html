@@ -7,12 +7,14 @@
   <div class="itemList">
     <div class="menuMainElements">
       @for (item of menuElementMobile; track item.name; let i = $index) {
-        <a [href]="item.link" class="itemMenu"><i [class]="item.icon"></i>{{ item.name }}</a>
+        <a (click)="closeMenu()" [routerLink]="item.link" class="itemMenu"
+          ><i [class]="item.icon"></i>{{ item.name }}</a
+        >
       }
     </div>
     <div class="secMenuElement">
       @for (item of secMenuElementMobile; track item.name; let i = $index) {
-        <a [href]="item.link" class="itemMenu">{{ item.name }}</a>
+        <a (click)="closeMenu()" [routerLink]="item.link" class="itemMenu">{{ item.name }}</a>
       }
     </div>
   </div>

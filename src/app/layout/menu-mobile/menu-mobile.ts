@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MenuService } from '../../core/datacore/mainMenu/datamenu-service';
 import { SecMenuService } from '../../core/datacore/secondMenu/secMenu-service';
 
 @Component({
   selector: 'app-menu-mobile',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './menu-mobile.html',
   styleUrl: './menu-mobile.scss',
 })
@@ -31,6 +31,10 @@ export class MenuMobile implements OnInit {
 
   goToLink(link: string) {
     void this.router.navigate([link]);
+    this.closeMenu();
+  }
+
+  closeMenu() {
     this.activeMenu = false;
   }
 }
