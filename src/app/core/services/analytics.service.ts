@@ -4,8 +4,8 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 declare global {
   interface Window {
-    dataLayer: unknown[];
-    gtag(...args: unknown[]): void;
+    dataLayer: IArguments[];
+    gtag: (...args: unknown[]) => void;
   }
 }
 
@@ -33,18 +33,10 @@ export class AnalyticsService {
     this.initialized = true;
 
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function (...args: unknown[]) {
-      window.dataLayer.push(args);
+
+    window.gtag = function () {
+      window.dataLayer.push(arguments as unknown as never);
     };
-
-    window.gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-    });
-
-    window.gtag('js', new Date());
 
     const existngScript = this.document.querySelector(
       `script[src="https://www.googletagmanager.com/gtag/js?id=${this.measurementId}"]`,
@@ -55,6 +47,16 @@ export class AnalyticsService {
       script.src = `https://www.googletagmanager.com/gtag/js?id=${this.measurementId}`;
       this.document.head.appendChild(script);
     }
+
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+
+    window.gtag('js', new Date());
+
     window.gtag('config', this.measurementId, {
       anonymize_ip: true,
       send_page_view: false,
