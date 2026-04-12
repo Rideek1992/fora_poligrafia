@@ -10,6 +10,7 @@ import { InformationMenuService } from '../../core/datacore/informtionMenu/infor
   imports: [RouterLink],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
+  standalone: true,
 })
 export class Footer {
   year = new Date().getFullYear();

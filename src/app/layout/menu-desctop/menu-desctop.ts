@@ -9,6 +9,7 @@ import { SecMenuService } from '../../core/datacore/secondMenu/secMenu-service';
   imports: [ButtonLink, RouterLink],
   templateUrl: './menu-desctop.html',
   styleUrl: './menu-desctop.scss',
+  standalone: true,
 })
 export class MenuDesctop {
   //elementy memu

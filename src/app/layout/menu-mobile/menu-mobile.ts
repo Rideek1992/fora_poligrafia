@@ -8,6 +8,7 @@ import { SecMenuService } from '../../core/datacore/secondMenu/secMenu-service';
   imports: [RouterLink],
   templateUrl: './menu-mobile.html',
   styleUrl: './menu-mobile.scss',
+  standalone: true,
 })
 export class MenuMobile implements OnInit {
   activeMenu: boolean = false;

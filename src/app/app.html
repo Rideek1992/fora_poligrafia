@@ -8,3 +8,7 @@
 <div class="footerSection">
   <app-footer></app-footer>
 </div>
+
+@if (showCookieBanner) {
+  <app-cookie-popup (accept)="acceptCookies()" (reject)="rejectCookies()"></app-cookie-popup>
+}

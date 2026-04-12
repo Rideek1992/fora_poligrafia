@@ -102,4 +102,5 @@ export const enviroment = {
       icon: 'fa-thin fa-paperclip',
     },
   ],
+  googleAnalyticsId: 'G-EECKZ7Z7ZV',
 };

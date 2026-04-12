@@ -1,0 +1,24 @@
+<div [class.hiddenBanner]="!isOpenBanner" class="cookie-baner">
+  <div class="visable-section-banner">
+    @if (isOpenBanner) {
+      <i (click)="closeBanner()" class="fa-thin fa-eye"></i>
+    } @else {
+      <i (click)="closeBanner()" class="fa-thin fa-eye-closed"></i>
+    }
+  </div>
+  <h3>Szanujemy Twoją prywatność</h3>
+  <p>
+    Wykorzystujemy pliki cookies, aby zapewnić prawidłowe działanie strony. Za Twoją zgodą używamy
+    również cookies analitycznych, które pozwalają nam sprawdzać, jak użytkownicy korzystają z
+    witryny i dzięki temu rozwijać ją w bardziej użyteczny sposób. Możesz w każdej chwili
+    zaakceptować lub odrzucić analityczne pliki cookies. Więcej informacji znajdziesz w naszej
+    <a [routerLink]="'polityka-prywatnosci'">Polityce prywatności</a> oraz na stronie
+    <a [routerLink]="'ustawienia-cookies'">Ustawienia cookies</a>, gdzie możesz zarządzać zgodami, a
+    także sprawdzić, jak usunąć zapisane pliki cookies z Twojej przeglądarki.
+  </p>
+
+  <div class="cookie-baner__actions">
+    <button (click)="onReject()" class="denine-button" type="button">Odrzuć</button>
+    <button (click)="onAccept()" class="accept-button" type="button">Akceptuj</button>
+  </div>
+</div>
