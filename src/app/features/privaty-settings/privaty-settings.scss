@@ -1,0 +1,105 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+@use 'abstracts/view' as view;
+
+:host {
+  @include page.mainLayout;
+}
+
+.wrapperSettings {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 4rem;
+}
+
+.informationText,
+.activeUserSettings {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  h2 {
+    @include page.sizeH2;
+    text-align: center;
+  }
+
+  p {
+    @include page.sizeP;
+  }
+}
+
+.activeElements {
+  width: 60%;
+  margin: 0 auto;
+
+  .singleSetting {
+    display: grid;
+    grid-template-columns: 0.5fr 0.3fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+
+    .notActive {
+      height: 100%;
+      background-color: c.$color-item-5;
+      border-radius: 2rem;
+      text-align: center;
+      align-self: center;
+      @include page.sizePxxsmall;
+    }
+    .active {
+      background-color: c.$color-item-3;
+    }
+  }
+}
+
+.updatedAtElement {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.manageSettings {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  h2,
+  h3 {
+    @include page.sizeH2Mobile;
+    text-align: center;
+  }
+
+  p {
+    @include page.sizeP;
+  }
+
+  .singleManageItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .buttonSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      opacity: 0.5;
+      border: none;
+    }
+
+    .active {
+      opacity: 1;
+    }
+  }
+}

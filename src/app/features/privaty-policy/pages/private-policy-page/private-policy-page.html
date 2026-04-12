@@ -1,4 +1,10 @@
-<app-hero-page [heroData]="dataPagePolitic?.heroSection"></app-hero-page>
-<div class="wrapperPolicy">
-  <markdown [data]="dataPolitic?.content"></markdown>
-</div>
+@if (isLoading) {
+  <app-hero-page [heroData]="dataPagePolitic?.heroSection"></app-hero-page>
+  <div class="wrapperPolicy">
+    <markdown [data]="dataPolitic?.content"></markdown>
+  </div>
+}
+
+@if (!isLoading) {
+  <app-loader-page></app-loader-page>
+}

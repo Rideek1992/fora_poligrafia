@@ -9,6 +9,7 @@ import { NgClass } from '@angular/common';
   imports: [ButtonLink, NgClass],
   templateUrl: './hero-page.html',
   styleUrl: './hero-page.scss',
+  standalone: true,
 })
 export class HeroPage {
   @Input() isLoading: boolean | undefined = false;

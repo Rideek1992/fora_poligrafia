@@ -81,6 +81,8 @@ export class AnalyticsService {
     window.gtag('consent', 'update', {
       analytics_storage: 'denied',
     });
+
+    this.deleteAnalyticsCookies();
   }
 
   trackPageView(path: string, title?: string): void {
@@ -96,5 +98,50 @@ export class AnalyticsService {
     if (!this.isBrowser || !window.gtag) return;
 
     window.gtag('event', eventName, params ?? {});
+  }
+
+  private deleteCookie(name: string, domain?: string): void {
+    if (!this.isBrowser) return;
+
+    const expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
+    const path = 'path=/';
+
+    this.document.cookie = `${name}=; expires=${expires}; ${path}`;
+    this.document.cookie = `${name}=; expires=${expires}; ${path}; domain=${window.location.hostname}`;
+
+    if (domain) {
+      this.document.cookie = `${name}=; expires=${expires}; ${path}; domain=${domain}`;
+    }
+  }
+
+  private deleteAnalyticsCookies(): void {
+    if (!this.isBrowser) return;
+
+    const hostname = window.location.hostname;
+    const hostnameParts = hostname.split('.');
+
+    const possibleDomains: string[] = [];
+
+    if (hostnameParts.length >= 2) {
+      possibleDomains.push(`.${hostnameParts.slice(-2).join('.')}`);
+    }
+
+    if (hostnameParts.length >= 3) {
+      possibleDomains.push(`.${hostnameParts.slice(-3).join('.')}`);
+    }
+
+    const cookies = this.document.cookie.split(';').map((cookie) => cookie.trim());
+
+    for (const cookie of cookies) {
+      const [cookieName] = cookie.split('=');
+
+      if (cookieName === '_ga' || cookieName.startsWith('_ga_')) {
+        this.deleteCookie(cookieName);
+
+        for (const domain of possibleDomains) {
+          this.deleteCookie(cookieName, domain);
+        }
+      }
+    }
   }
 }

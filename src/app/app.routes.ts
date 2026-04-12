@@ -166,6 +166,23 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'ustawienia-prywatnosci',
+    loadComponent: () =>
+      import('./features/privaty-settings/privaty-settings').then((m) => m.PrivatySettings),
+    data: {
+      seo: {
+        title: 'Ustawienia prywatności i cookies | FORA Poligrafia',
+        description:
+          'Sprawdź i zarządzaj ustawieniami prywatności oraz zgodami na pliki cookies w serwisie FORA Poligrafia. Tutaj możesz zmienić zgody dotyczące analityki i innych technologii.',
+        keywords:
+          'ustawienia prywatności, ustawienia cookies, zgody cookies, zarządzanie zgodami, polityka prywatności, fora poligrafia',
+        canonical: 'https://fora-poligrafia.pl/ustawienia-prywatnosci',
+        robots: 'index, follow',
+        type: 'website',
+      },
+    },
+  },
+  {
     path: 'portfolio',
     loadComponent: () =>
       import('./features/portfiolio/pages/portfolio-page/portfolio-page').then(

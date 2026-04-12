@@ -9,6 +9,6 @@
   <app-footer></app-footer>
 </div>
 
-@if (showCookieBanner) {
+@if (cookieBannerVisible === true) {
   <app-cookie-popup (accept)="acceptCookies()" (reject)="rejectCookies()"></app-cookie-popup>
 }

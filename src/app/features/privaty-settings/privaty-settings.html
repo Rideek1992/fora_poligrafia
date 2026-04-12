@@ -1,0 +1,88 @@
+@if (isLoading) {
+  <app-hero-page [heroData]="dataSettingsPolicy?.heroSection"></app-hero-page>
+
+  <div class="wrapperSettings">
+    <div class="informationText">
+      <h2>Jak działają ustawienia prywatności w naszym serwisie</h2>
+      <p>
+        Szanujemy prywatność użytkowników i chcemy, aby zarządzanie zgodami było proste oraz
+        przejrzyste. Na tej stronie możesz sprawdzić, jakie zgody są aktualnie zapisane dla Twojej
+        przeglądarki, zmienić ustawienia dotyczące analitycznych plików cookies oraz dowiedzieć się,
+        w jaki sposób wpływają one na działanie serwisu.
+      </p>
+      <p>
+        Niektóre technologie są niezbędne do prawidłowego działania strony i zapewnienia jej
+        bezpieczeństwa. Inne, takie jak narzędzia analityczne, pomagają nam zrozumieć, jak
+        użytkownicy korzystają z serwisu, dzięki czemu możemy go stale rozwijać i ulepszać.
+        Korzystanie z analitycznych plików cookies odbywa się wyłącznie po uzyskaniu Twojej zgody.
+      </p>
+    </div>
+
+    <div class="activeUserSettings">
+      <h2>Aktualny stan Twoich ustawień</h2>
+      <p>
+        Poniżej możesz sprawdzić, które kategorie zgód są obecnie aktywne dla tej przeglądarki i
+        tego urządzenia.
+      </p>
+
+      <div class="activeElements">
+        @for (item of DATA_COOKIE; track item.slug) {
+          <div class="singleSetting">
+            <p>{{ item.name }}</p>
+            <p [class.active]="getCookieStatus(item.slug)" class="notActive">
+              {{ getCookieStatus(item.slug) ? 'Aktywne' : 'Nieaktywne' }}
+            </p>
+          </div>
+        }
+      </div>
+
+      @if (cookieSettings?.updatedAt) {
+        <div class="updatedAtElement">
+          <p>Ostatnia aktualizacja zgody:</p>
+          <p>{{ cookieSettings?.updatedAt | date: 'dd.MM.yyyy, HH:mm' }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="manageSettings">
+      <h2>Zarządzaj swoimi zgodami</h2>
+      <p>
+        Możesz w dowolnym momencie zmienić ustawienia prywatności i zdecydować, czy chcesz zezwolić
+        na wykorzystywanie analitycznych plików cookies.
+      </p>
+
+      <div class="singleManageItem">
+        <h3>Analityczne pliki cookies</h3>
+        <p>
+          Te pliki cookies pomagają nam analizować ruch w serwisie, mierzyć odwiedziny oraz lepiej
+          rozumieć, jak użytkownicy korzystają ze strony.
+        </p>
+        <p>
+          Status:
+          <strong>{{ cookieSettings?.analytics ? 'Aktywne' : 'Nieaktywne' }}</strong>
+        </p>
+
+        <div class="buttonSection">
+          <button
+            (click)="enableAnalyticsConsent()"
+            [class.active]="cookieSettings?.analytics"
+            type="button"
+          >
+            Włącz analityczne
+          </button>
+          <button
+            (click)="disableAnalyticsConsent()"
+            [class.active]="!cookieSettings?.analytics"
+            type="button"
+          >
+            Wyłącz analityczne
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+@if (!isLoading) {
+  <app-loader-page></app-loader-page>
+}

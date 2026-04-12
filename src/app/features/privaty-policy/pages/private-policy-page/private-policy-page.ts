@@ -7,16 +7,19 @@ import { ServicePageInterface } from '../../../../core/models/service-page-inter
 import { ELEMENTS_SCHEMA } from '../../../../seo/schema/elements.schema';
 import { createPageSchema } from '../../../../seo/schema/create.schema';
 import { SchemaService } from '../../../../seo/schema/schema.service';
+import { LoaderPage } from '../../../../shared/components/loader-page/loader-page';
 
 @Component({
   selector: 'app-private-policy-page',
-  imports: [MarkdownComponent, HeroPage],
+  imports: [MarkdownComponent, HeroPage, LoaderPage],
   templateUrl: './private-policy-page.html',
   styleUrl: './private-policy-page.scss',
+  standalone: true,
 })
 export class PrivatePolicyPage implements OnInit {
   dataPolitic: PoliticPrivateInterface | null = null;
   dataPagePolitic: ServicePageInterface | null = null;
+  isLoading = false;
 
   constructor(
     private api: ApiBackendCMSService,
@@ -36,6 +39,7 @@ export class PrivatePolicyPage implements OnInit {
     this.api.getPageData('polityka-prywatnosci').subscribe({
       next: (data) => {
         this.dataPagePolitic = data;
+        this.isLoading = true;
       },
       error: (err) => {},
     });

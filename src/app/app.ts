@@ -1,11 +1,11 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuDesctop } from './layout/menu-desctop/menu-desctop';
 import { Footer } from './layout/footer/footer';
 import { SeoService } from './seo/seo-service';
 import { filter, map } from 'rxjs';
 import { SeoInterface } from './core/models/seo-interface';
-import { ViewportScroller } from '@angular/common';
+import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { MenuMobile } from './layout/menu-mobile/menu-mobile';
 import { AnalyticsService } from './core/services/analytics.service';
 import { CookieConsentService } from './core/services/cookie-consent.service';
@@ -19,7 +19,8 @@ import { CookiePopup } from './shared/components/cookie-popup/cookie-popup';
   standalone: true,
 })
 export class App implements OnInit {
-  showCookieBanner = false;
+  cookieBannerVisible: boolean | null = null;
+  schowCookieBanner = false;
   protected readonly title = signal('web');
 
   constructor(
@@ -29,11 +30,19 @@ export class App implements OnInit {
     private viewportScroller: ViewportScroller,
     private analytics: AnalyticsService,
     private cookie: CookieConsentService,
+    @Inject(PLATFORM_ID) private platformId: object,
   ) {}
+
+  private get isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit() {
     this.analytics.init();
-    this.restoreCookieConsentState();
+
+    if (this.isBrowser) {
+      this.restoreCookieConsentState();
+    }
 
     this.route.events
       .pipe(
@@ -71,9 +80,11 @@ export class App implements OnInit {
     this.cookie.saveConsentSettings({
       necessary: true,
       analytics: true,
+      marketing: false,
+      functional: false,
     });
     this.analytics.enableAnalytics();
-    this.showCookieBanner = false;
+    this.cookieBannerVisible = false;
     this.analytics.trackPageView(this.route.url);
   }
 
@@ -81,9 +92,11 @@ export class App implements OnInit {
     this.cookie.saveConsentSettings({
       necessary: true,
       analytics: false,
+      marketing: false,
+      functional: false,
     });
     this.analytics.disableAnalytics();
-    this.showCookieBanner = false;
+    this.cookieBannerVisible = false;
   }
 
   private restoreCookieConsentState(): void {
@@ -91,7 +104,7 @@ export class App implements OnInit {
 
     if (!settings) {
       this.analytics.disableAnalytics();
-      this.showCookieBanner = true;
+      this.cookieBannerVisible = true;
       return;
     }
     if (settings.analytics) {
@@ -100,6 +113,6 @@ export class App implements OnInit {
       this.analytics.disableAnalytics();
     }
 
-    this.showCookieBanner = false;
+    this.cookieBannerVisible = false;
   }
 }

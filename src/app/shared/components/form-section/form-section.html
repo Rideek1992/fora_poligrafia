@@ -19,29 +19,56 @@
     <div class="informationUser">
       <div class="formField">
         <label for="name">Imię</label>
-        <input [(ngModel)]="formModel.name" id="name" name="name" type="text" />
+        <input
+          (focus)="onFormInteraction('name')"
+          [(ngModel)]="formModel.name"
+          id="name"
+          name="name"
+          type="text"
+        />
       </div>
 
       <div class="formField">
         <label for="email">e-mail</label>
-        <input [(ngModel)]="formModel.email" email id="email" name="email" required type="email" />
+        <input
+          (focus)="onFormInteraction('email')"
+          [(ngModel)]="formModel.email"
+          email
+          id="email"
+          name="email"
+          required
+          type="email"
+        />
       </div>
 
       <div class="formField">
         <label for="phone">telefon</label>
-        <input [(ngModel)]="formModel.phone" id="phone" name="phone" type="text" />
+        <input
+          (focus)="onFormInteraction('phone')"
+          [(ngModel)]="formModel.phone"
+          id="phone"
+          name="phone"
+          type="text"
+        />
       </div>
     </div>
 
     <div class="messageSection">
       <div class="formField">
         <label for="topic">temat</label>
-        <input [(ngModel)]="formModel.topic" id="topic" name="topic" type="text" />
+        <input
+          (focus)="onFormInteraction('topic')"
+          [(ngModel)]="formModel.topic"
+          id="topic"
+          name="topic"
+          type="text"
+        />
       </div>
 
       <div class="messageField">
         <label for="message">wiadomość</label>
         <textarea
+          (focus)="onFormInteraction('message')"
           [(ngModel)]="formModel.message"
           id="message"
           name="message"
@@ -53,6 +80,7 @@
       <div class="optionsElement">
         <label for="conversatrionElement">dotyczy</label>
         <select
+          (focus)="onFormInteraction('conversatrionElement')"
           [(ngModel)]="formModel.conversatrionElement"
           id="conversatrionElement"
           name="conversatrionElement"
@@ -81,7 +109,9 @@
       </label>
     </div>
     <div class="button">
-      <button [disabled]="contactForm.invalid" type="submit">Wyślij formularz</button>
+      <button (click)="onSubmitGA()" [disabled]="contactForm.invalid" type="submit">
+        Wyślij formularz
+      </button>
     </div>
   </form>
 </div>

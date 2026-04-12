@@ -3,6 +3,8 @@ import { isPlatformBrowser } from '@angular/common';
 
 export interface CookieConsentSettings {
   necessary: true;
+  marketing: boolean;
+  functional: boolean;
   analytics: boolean;
   updatedAt: string;
 }
@@ -34,6 +36,8 @@ export class CookieConsentService {
       if (
         parsed?.necessary !== true ||
         typeof parsed?.analytics !== 'boolean' ||
+        typeof parsed?.marketing !== 'boolean' ||
+        typeof parsed?.functional !== 'boolean' ||
         !parsed?.updatedAt
       ) {
         this.clear();

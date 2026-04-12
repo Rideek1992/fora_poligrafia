@@ -6,4 +6,9 @@ export const DATA_TECH: DatatechmenuInterface[] = [
     link: 'polityka-prywatnosci',
     active: true,
   },
+  {
+    name: 'Ustawienia prywatności',
+    link: 'ustawienia-prywatnosci',
+    active: true,
+  },
 ];

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   imports: [],
   templateUrl: './loader-page.html',
   styleUrl: './loader-page.scss',
+  standalone: true,
 })
 export class LoaderPage implements OnInit {
   timeout: number = 4000;

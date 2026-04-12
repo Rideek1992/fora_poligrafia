@@ -5,6 +5,7 @@ import { Component, Input } from '@angular/core';
   imports: [],
   templateUrl: './button-link.html',
   styleUrl: './button-link.scss',
+  standalone: true,
 })
 export class ButtonLink {
   @Input() link: string | undefined = '';

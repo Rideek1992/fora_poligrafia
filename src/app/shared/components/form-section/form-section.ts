@@ -4,6 +4,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ContentFormService } from './form-section.service';
 import { ApiBackendCMSService } from '../../../core/backendCMS/apiCMS/apiBackendCMS-services';
+import { AnalyticsService } from '../../../core/services/analytics.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-section',
@@ -33,11 +35,13 @@ export class FormSection {
       informationCode: '',
     },
   };
+  formStart = false;
   private api = inject(ApiBackendCMSService);
   private formOptionsElement = inject(FormElementsService);
   dataOptionElements = this.formOptionsElement.getActiveFormOptionElement();
-
+  private analytics = inject(AnalyticsService);
   private contentFormService = inject(ContentFormService);
+  private route = inject(Router);
 
   onSubmit(form: NgForm): void {
     if (form.invalid) {
@@ -91,6 +95,23 @@ export class FormSection {
       error: (error) => {
         console.error('Błąd pobierania danych', error);
       },
+    });
+  }
+
+  onFormInteraction(data: string) {
+    if (this.formStart) return;
+
+    this.formStart = true;
+
+    this.analytics.trackEvent('form_iteraction', {
+      form_name: `contact_form_${data}`,
+      page_url: this.route.url,
+    });
+  }
+
+  onSubmitGA(): void {
+    this.analytics.trackEvent('form_submit', {
+      page_url: this.route.url,
     });
   }
 }
