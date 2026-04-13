@@ -1,9 +1,27 @@
-<div
-  [class.loading]="isLoading"
-  [ngClass]="photoPosition === 'top' ? 'topPosition' : ''"
-  [style.background-image]="'url(' + photoAddres + heroData?.imageSection?.images?.[0]?.url + ')'"
-  class="heroSection"
->
+<!--<div-->
+<!--  [class.loading]="isLoading"-->
+<!--  [ngClass]="photoPosition === 'top' ? 'topPosition' : ''"-->
+<!--  [style.background-image]="'url(' + photoAddres + heroData?.imageSection?.images?.[0]?.url + ')'"-->
+<!--  class="heroSection"-->
+<!--&gt;-->
+<!--  <h1>{{ heroData?.title }}</h1>-->
+<!--  <p>{{ heroData?.subtitle }}</p>-->
+<!--  <app-button-link-->
+<!--    [idLink]="heroData?.primaryButton?.idLink"-->
+<!--    [link]="heroData?.primaryButton?.link"-->
+<!--    [name]="heroData?.primaryButton?.text"-->
+<!--    fragment="lightPhoto"-->
+<!--  ></app-button-link>-->
+<!--</div>-->
+
+<div [class.loading]="isLoading" class="heroSection">
+  <img
+    [src]="photoAddres + heroData?.imageSection?.images?.[0]?.url"
+    alt=""
+    decoding="async"
+    fetchpriority="high"
+    loading="eager"
+  />
   <h1>{{ heroData?.title }}</h1>
   <p>{{ heroData?.subtitle }}</p>
   <app-button-link
