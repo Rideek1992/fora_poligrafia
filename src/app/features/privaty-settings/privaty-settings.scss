@@ -11,6 +11,12 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 4rem;
+
+  @include view.mobile {
+    grid-column: 1 / -1;
+    width: 100vw;
+    padding: 0 1rem;
+  }
 }
 
 .informationText,
@@ -32,6 +38,10 @@
 .activeElements {
   width: 60%;
   margin: 0 auto;
+
+  @include view.mobile {
+    width: 100%;
+  }
 
   .singleSetting {
     display: grid;
@@ -60,6 +70,9 @@
   gap: 2rem;
   width: 60%;
   margin: 0 auto;
+  @include view.mobile {
+    width: 100%;
+  }
 }
 
 .manageSettings {
