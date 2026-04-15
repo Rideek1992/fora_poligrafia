@@ -1,0 +1,80 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+@use 'abstracts/view' as view;
+
+:host {
+  height: 100vh;
+
+  @include view.mobile {
+    width: 100vw;
+  }
+}
+
+.wrapperHeroLanding {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 3rem repeat(4, 1fr) 3rem;
+  grid-template-rows: 3rem repeat(4, auto) 3rem;
+  color: c.$font-color-secondary;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0.7;
+    z-index: 1;
+  }
+}
+
+.contextElement {
+  position: relative;
+  z-index: 2;
+  grid-column: 2 / span 2;
+  grid-row: 4 / span 1;
+  background-color: rgba(c.$font-color-primary, 0.9);
+  box-shadow: 0 0 1rem 1rem rgba(c.$font-color-secondary, 0.6);
+  outline: 3px solid rgba(c.$font-color-secondary, 0.2);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
+  border-radius: 4rem;
+  @include view.mobile {
+    grid-column: 1 / -1;
+    border-radius: 0;
+    padding: 1rem 3rem;
+  }
+
+  h1 {
+    @include page.sizeH1;
+    @include view.mobile {
+      text-align: center;
+    }
+  }
+
+  p {
+    @include page.sizeH3;
+    @include view.mobile {
+      text-align: center;
+    }
+  }
+
+  ::ng-deep app-button-link {
+    margin-top: auto;
+    align-self: flex-start;
+    justify-self: flex-end;
+    @include view.mobile {
+      justify-self: center;
+      align-self: center;
+      margin-bottom: 3rem;
+    }
+  }
+}

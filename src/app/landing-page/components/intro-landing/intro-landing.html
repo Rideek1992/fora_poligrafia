@@ -1,0 +1,17 @@
+@if (introData?.showSection) {
+  <div class="wrapperIntroSection">
+    <h2>{{ introData?.title }}</h2>
+    <p>{{ introData?.description }}</p>
+    <div class="sectionItemsIntro">
+      @for (item of introData?.items; track item.id; let i = $index) {
+        <div class="itemIntro">
+          <div class="headerItem">
+            <i class="{{ item.icon }}"></i>
+            <h3>{{ item.title }}</h3>
+          </div>
+          <p>{{ item.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,18 @@
+@if (targetData?.showSection) {
+  <div class="wrapperTarget">
+    <h2>{{ targetData?.title }}</h2>
+    <p>{{ targetData?.description }}</p>
+    <div class="elementsTarget">
+      @for (item of targetData?.items; track item.id; let i = $index) {
+        <div (click)="onChangeTarget(i)" [class.activeTarget]="acticveTarget === i" class="element">
+          <img [alt]="item.imageAlt" [src]="addressUrl + item?.image?.url" />
+          <div class="contentElement">
+            <i [class]="item.icon"></i>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,22 @@
+<div class="wrapperServices">
+  <h2>{{ servicesSection?.title }}</h2>
+  <p>{{ servicesSection?.description }}</p>
+  <div class="itemSection">
+    @for (item of servicesSection?.items; track item.title; let i = $index) {
+      <div class="item">
+        <div class="itemConntetn">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.shortDescription }}</p>
+          <p>{{ item.longDescription }}</p>
+          <app-button-link
+            [idLink]="item.buttonID"
+            [link]="item.buttonLink"
+            [name]="item.buttonText"
+            fragment="lightPhoto"
+          ></app-button-link>
+        </div>
+        <img [class.rightImg]="i % 2 === 0" [src]="addresPage + item?.image?.url" alt="" />
+      </div>
+    }
+  </div>
+</div>

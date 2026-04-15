@@ -9,6 +9,10 @@ import {
 } from '../../models/politic-private-interface';
 import { FQASection } from '../../models/FQA-section-interface';
 import { PortfolioInterface, PortfolioResponseInterface } from '../../models/portfolio-interface';
+import {
+  LandingPageInterface,
+  LandingPageResponseInterface,
+} from '../../models/landing-page-interface';
 
 export interface ServicePageResponseInterface {
   data: ServicePageInterface[];
@@ -153,5 +157,13 @@ export class ApiBackendCMSService {
         return response.data ?? [];
       }),
     );
+  }
+
+  getLandingPageData(slug: string): Observable<LandingPageInterface | null> {
+    const url = `${this.apiUrl}/api/fora-pg-landing-page-cmses?filters[slug][$eq]=${slug}&populate[SEO][populate]=*&populate[heroSection][populate]=*&populate[introSection][populate][image][populate]=*&populate[introSection][populate][items][populate]=*&populate[servicesSection][populate][items][populate]=*&populate[benefitSection][populate][items][populate]=*&populate[processSection][populate][steps][populate]=*&populate[targetSection][populate][items][populate]=*&populate[portfolioSection][populate][item][populate]=*&populate[FQASection][populate][item][populate]=*&populate[CTASection][populate]=*`;
+
+    return this.http
+      .get<LandingPageResponseInterface>(url)
+      .pipe(map((response) => response.data[0] ?? null));
   }
 }

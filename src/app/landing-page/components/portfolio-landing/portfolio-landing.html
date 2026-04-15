@@ -1,0 +1,22 @@
+@if (portfolioData?.showSection) {
+  <div class="wrapperPortfolio">
+    <h2>{{ portfolioData?.title }}</h2>
+    <p>{{ portfolioData?.description }}</p>
+    <div class="elementsItem">
+      @for (item of portfolioData?.item; track item.id; let i = $index) {
+        <div class="item">
+          <div class="textElement">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+            <app-button-link
+              [link]="item.buttonLink"
+              [name]="item.buttonText"
+              fragment="lightPhoto"
+            />
+          </div>
+          <img [alt]="item.imageAlt" [src]="addresUrl + item?.image?.url" />
+        </div>
+      }
+    </div>
+  </div>
+}

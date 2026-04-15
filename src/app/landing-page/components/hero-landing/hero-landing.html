@@ -1,0 +1,16 @@
+@if (heroData?.showSection) {
+  <div class="wrapperHeroLanding">
+    <img [alt]="heroData?.imageAlt" [src]="adressUIrl + heroData?.image?.url" />
+    <div class="contextElement">
+      <h1>{{ heroData?.title }}</h1>
+      <p>{{ heroData?.description }}</p>
+      <app-button-link
+        [idLink]="heroData?.buttonID"
+        [link]="heroData?.buttonLink"
+        [name]="heroData?.buttonTitle"
+        fragment="lightPhoto"
+      >
+      </app-button-link>
+    </div>
+  </div>
+}

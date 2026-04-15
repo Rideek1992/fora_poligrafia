@@ -1,9 +1,23 @@
-<div class="wrapperCTA">
-  <h2>{{ ctaData?.title }}</h2>
-  <p>{{ ctaData?.description }}</p>
-  <app-button-link
-    [idLink]="ctaData?.primaryButtonId"
-    [link]="ctaData?.primaryButtonLink"
-    [name]="ctaData?.primaryButtonText"
-  ></app-button-link>
-</div>
+@if (ctaData) {
+  <div class="wrapperCTA">
+    <h2>{{ ctaData?.title }}</h2>
+    <p>{{ ctaData?.description }}</p>
+    <app-button-link
+      [idLink]="ctaData?.primaryButtonId"
+      [link]="ctaData?.primaryButtonLink"
+      [name]="ctaData?.primaryButtonText"
+    ></app-button-link>
+  </div>
+}
+
+@if (ctaLanding) {
+  <div class="wrapperCTA">
+    <h2>{{ ctaLanding?.eyebrow }}</h2>
+    <p>{{ ctaLanding?.description }}</p>
+    <app-button-link
+      [idLink]="ctaLanding?.buttonID"
+      [link]="ctaLanding?.buttonLink"
+      [name]="ctaLanding?.buttonText"
+    ></app-button-link>
+  </div>
+}

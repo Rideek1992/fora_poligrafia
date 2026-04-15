@@ -1,0 +1,97 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+@use 'abstracts/view' as view;
+
+:host {
+  @include page.pageLandingLayout;
+  @include view.mobile {
+    width: 100vw;
+  }
+}
+
+.wrapperServices {
+  grid-column: 1 / -1;
+  @include page.pageLayout;
+  gap: 2rem;
+  @include view.mobile {
+    width: 100vw;
+  }
+
+  h2 {
+    @include page.sizeH2;
+    grid-column: 2 / -2;
+    justify-self: center;
+    @include view.mobile {
+      text-align: center;
+    }
+  }
+
+  p {
+    @include page.sizeP;
+    grid-column: 2 / -2;
+    @include view.mobile {
+      text-align: center;
+    }
+  }
+}
+
+.itemSection {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 2rem;
+
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    gap: 2rem;
+    justify-items: center;
+    align-items: center;
+    @include view.mobile {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    img {
+      grid-column: 1 / span 1;
+      grid-row: 1 / -1;
+      border-radius: 0 2rem 2rem 0;
+      outline: 2px solid rgba(c.$color-primary, 0.9);
+      outline-offset: -1rem;
+      @include view.mobile {
+        border-radius: 0;
+      }
+    }
+
+    .rightImg {
+      grid-column: 2 / span 1;
+      grid-row: 1 / -1;
+      border-radius: 2rem 0 0 2rem;
+      @include view.mobile {
+        grid-column: 1 / span 1;
+        border-radius: 0;
+      }
+    }
+
+    .itemConntetn {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+
+      h3 {
+        @include page.sizeH2;
+        @include view.mobile {
+          text-align: center;
+          @include page.sizeH1Mobile;
+        }
+      }
+
+      ::ng-deep app-button-link {
+        //align-self: end;
+        justify-self: end;
+      }
+    }
+  }
+}

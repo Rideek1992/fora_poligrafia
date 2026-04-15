@@ -1,0 +1,17 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+@use 'abstracts/view' as view;
+
+//laning-page
+
+:host {
+  @include page.pageLandingLayout;
+  background-color: c.$color-secondary;
+  padding-bottom: 6em;
+  color: c.$font-color-primary;
+
+  @include view.mobile {
+    width: 100vw;
+    overflow: hidden;
+  }
+}

@@ -1,10 +1,10 @@
 @if (idLink) {
-  <a [class.lightPhoto]="fragment === 'lightPhoto'" [href]="`${link}#${idLink}`">
+  <a [class.lightPhoto]="fragment === 'lightPhoto'" [fragment]="idLink" [routerLink]="'/' + link">
     {{ name }}
   </a>
 }
 @if (!idLink) {
-  <a [class.lightPhoto]="fragment === 'lightPhoto'" [href]="link">
+  <a [class.lightPhoto]="fragment === 'lightPhoto'" [routerLink]="'/' + link">
     {{ name }}
   </a>
 }

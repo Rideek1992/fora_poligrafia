@@ -1,14 +1,19 @@
-<app-menu-mobile></app-menu-mobile>
-<div class="menuSection">
-  <app-menu-desctop></app-menu-desctop>
-</div>
-<main>
-  <router-outlet></router-outlet>
-</main>
-<div class="footerSection">
-  <app-footer></app-footer>
-</div>
+@if (!isLoandingPage) {
+  <app-menu-mobile></app-menu-mobile>
+  <div class="menuSection">
+    <app-menu-desctop></app-menu-desctop>
+  </div>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <div class="footerSection">
+    <app-footer></app-footer>
+  </div>
 
-@if (cookieBannerVisible === true) {
-  <app-cookie-popup (accept)="acceptCookies()" (reject)="rejectCookies()"></app-cookie-popup>
+  @if (cookieBannerVisible === true) {
+    <app-cookie-popup (accept)="acceptCookies()" (reject)="rejectCookies()"></app-cookie-popup>
+  }
+}
+@if (isLoandingPage) {
+  <router-outlet></router-outlet>
 }

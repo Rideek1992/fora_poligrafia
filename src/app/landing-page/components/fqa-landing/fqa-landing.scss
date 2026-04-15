@@ -1,0 +1,107 @@
+@use 'abstracts/colors' as c;
+@use 'page' as page;
+@use 'abstracts/view' as view;
+
+:host {
+  @include page.pageLandingLayout;
+}
+
+.wrapperFQALanding {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include view.mobile {
+    width: 100vw;
+    grid-column: 1 / -1;
+    padding: 0 2rem;
+  }
+
+  h2 {
+    @include page.sizeH2;
+    justify-self: center;
+    @include view.mobile {
+      text-align: center;
+    }
+  }
+  p {
+    @include page.sizeP;
+    @include view.mobile {
+      text-align: center;
+    }
+  }
+}
+
+.ElementsFQA {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  .itemFQA {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background-color: rgba(c.$color-primary, 0.2);
+    //padding: 2rem;
+    border-radius: 2rem;
+    outline: 1px solid rgba(c.$color-primary, 0.8);
+    .question {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 2rem 2rem 2rem 2rem;
+      gap: 1rem;
+      @include view.mobile {
+        justify-self: center;
+        align-self: center;
+        min-height: 10rem;
+      }
+
+      h4 {
+        @include view.mobile {
+          margin-right: 0;
+          justify-self: center;
+          align-self: center;
+        }
+      }
+
+      i {
+        margin-right: 3rem;
+        @include page.sizeH3;
+        transform: rotate(180deg);
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        @include view.mobile {
+          margin-right: 0;
+          justify-self: center;
+          align-self: center;
+        }
+      }
+
+      &.activeIcon {
+        i {
+          transform: rotate(0deg);
+        }
+        padding: 2rem 2rem 1rem 2rem;
+      }
+
+      h4 {
+        @include page.sizeH4;
+      }
+    }
+
+    .awnser {
+      display: none;
+      p {
+        @include page.sizePsmall;
+      }
+    }
+
+    .activeAwnser {
+      display: block;
+      padding: 1rem 4rem 2rem 4rem;
+      background-color: rgba(c.$font-color-secondary, 1);
+    }
+  }
+}

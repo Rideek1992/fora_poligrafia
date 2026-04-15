@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
 import { MenuDesctop } from './layout/menu-desctop/menu-desctop';
 import { Footer } from './layout/footer/footer';
 import { SeoService } from './seo/seo-service';
-import { filter, map } from 'rxjs';
+import { filter } from 'rxjs';
 import { SeoInterface } from './core/models/seo-interface';
 import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { MenuMobile } from './layout/menu-mobile/menu-mobile';
@@ -21,6 +21,7 @@ import { CookiePopup } from './shared/components/cookie-popup/cookie-popup';
 export class App implements OnInit {
   cookieBannerVisible: boolean | null = null;
   schowCookieBanner = false;
+  isLoandingPage: boolean = false;
   protected readonly title = signal('web');
 
   constructor(
@@ -39,43 +40,43 @@ export class App implements OnInit {
 
   ngOnInit() {
     this.analytics.init();
-
     if (this.isBrowser) {
       this.restoreCookieConsentState();
+      this.checkLayout(window.location.pathname);
     }
 
     this.route.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map(() => {
-          let route = this.activeRoute;
-          while (route.firstChild) {
-            route = route.firstChild;
-          }
-          return route;
-        }),
-        filter((route) => route.outlet === 'primary'),
-      )
-      .subscribe((route) => {
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.checkLayout(event.urlAfterRedirects);
+
+        let route = this.activeRoute;
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+
+        if (route.outlet !== 'primary') {
+          return;
+        }
+
         const slug = route.snapshot.paramMap.get('slug');
         const category = route.snapshot.paramMap.get('category');
 
         // portfolio item ma SEO z CMS, więc nie nadpisujemy go z route.data
-        if (slug && category) {
-          return;
-        }
+        if (!(slug && category)) {
+          const seo = route.snapshot.data['seo'] as SeoInterface | undefined;
 
-        const seo = route.snapshot.data['seo'] as SeoInterface | undefined;
-
-        if (seo) {
-          this.serviceSeo.updateSeo(seo);
+          if (seo) {
+            this.serviceSeo.updateSeo(seo);
+          }
         }
 
         if (this.cookie.hasAnalyticsConsent()) {
-          this.analytics.trackPageView(this.route.url);
+          this.analytics.trackPageView(event.urlAfterRedirects);
         }
       });
   }
+
   acceptCookies(): void {
     this.cookie.saveConsentSettings({
       necessary: true,
@@ -97,6 +98,10 @@ export class App implements OnInit {
     });
     this.analytics.disableAnalytics();
     this.cookieBannerVisible = false;
+  }
+
+  private checkLayout(url: string): void {
+    this.isLoandingPage = url.startsWith('/landing-page/');
   }
 
   private restoreCookieConsentState(): void {

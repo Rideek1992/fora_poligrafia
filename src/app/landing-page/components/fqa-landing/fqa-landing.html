@@ -1,0 +1,19 @@
+@if (fqaData?.showSection) {
+  <div class="wrapperFQALanding">
+    <h2>{{ fqaData?.title }}</h2>
+    <p>{{ fqaData?.description }}</p>
+    <div class="ElementsFQA">
+      @for (item of fqaData?.item; track $index; let i = $index) {
+        <div class="itemFQA">
+          <div [class.activeIcon]="activeFQA === i" class="question">
+            <h4>{{ item.question }}</h4>
+            <i (click)="openFQA(i)" class="fa-duotone fa-regular fa-chevrons-up"></i>
+          </div>
+          <div [class.activeAwnser]="activeFQA === i" class="awnser">
+            <p>{{ item.anwser }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}

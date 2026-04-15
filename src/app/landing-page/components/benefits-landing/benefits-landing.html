@@ -1,0 +1,17 @@
+@if (benefitsData?.showSection) {
+  <div class="wrapperBenefitsLandong">
+    <h2>{{ benefitsData?.title }}</h2>
+    <p>{{ benefitsData?.description }}</p>
+    <div class="elementsBenefits">
+      @for (item of benefitsData?.items; track item.id; let i = $index) {
+        <div (click)="changeBenefit(i)" class="element">
+          <i [class.active]="activeBenefit === i" [class]="item.icon"></i>
+          <h3>{{ item.title }}</h3>
+        </div>
+        <div class="description">
+          <p [class]="activeBenefit === i ? 'active' : 'hidden'">{{ item.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+}

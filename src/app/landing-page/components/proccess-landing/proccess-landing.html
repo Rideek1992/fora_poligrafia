@@ -1,0 +1,15 @@
+@if (proccessData?.showSection) {
+  <div class="wrapperProccess">
+    <h2>{{ proccessData?.title }}</h2>
+    <p>{{ proccessData?.description }}</p>
+    <div class="elementsProccess">
+      @for (item of proccessData?.steps; track item.title; let i = $index) {
+        <div class="item">
+          <p>{{ item.stemNumber }}</p>
+          <i [class]="item.icon"></i>
+          <h3>{{ item.title }}</h3>
+        </div>
+      }
+    </div>
+  </div>
+}

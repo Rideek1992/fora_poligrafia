@@ -207,6 +207,11 @@ export const routes: Routes = [
       import('./features/portfolio-item/portfolio-item').then((m) => m.PortfolioItem),
   },
   {
+    path: 'landing-page/:slug',
+    loadComponent: () =>
+      import('./landing-page/landing-page/landing-page').then((m) => m.LandingPage),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./features/not-page/pages/not-page/not-page').then((m) => m.NotPage),
