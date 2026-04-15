@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TargetSectionInterface } from '../../../core/models/target-section-interface';
 import { NgClass } from '@angular/common';
 import { enviroment } from '../../../../enviroment';
@@ -10,8 +10,8 @@ import { MarkdownComponent } from 'ngx-markdown';
   templateUrl: './target-page.html',
   styleUrl: './target-page.scss',
 })
-export class TargetPage {
-  @Input() targetData!: TargetSectionInterface | null | undefined;
+export class TargetPage implements OnInit {
+  @Input() targetData: TargetSectionInterface | null | undefined;
   @Input() formatSection?: string;
 
   activeElement: number = 0;
@@ -26,5 +26,9 @@ export class TargetPage {
 
   changePhotoActive(index: number) {
     this.photoActiveNumber = index;
+  }
+
+  ngOnInit() {
+    console.log(this.targetData);
   }
 }

@@ -36,7 +36,7 @@ export class ApiBackendCMSService {
   // funkcje do pobrania danych
 
   getFullPageData(slug: string) {
-    const url = `${this.apiUrl}/api/fora-pg-cmses?filters[slug][$eq]=${slug}&populate[heroSection][populate][primaryButton]=*&populate[heroSection][populate][secondaryButton]=*&populate[heroSection][populate][imageSection][populate]=*&populate[businessSection][populate]=*&populate[scopeSection][populate][items][populate]=*&populate[benefitsSection][populate]=*&populate[targetSection][populate]=*&populate[ctaSection][populate]=*&populate[miniHeroSection][populate]=*`;
+    const url = `${this.apiUrl}/api/fora-pg-cmses?filters[slug][$eq]=${slug}&populate[heroSection][populate][primaryButton]=*&populate[heroSection][populate][secondaryButton]=*&populate[heroSection][populate][imageSection][populate]=*&populate[businessSection][populate]=*&populate[scopeSection][populate][items][populate]=*&populate[benefitsSection][populate]=*&populate[targetSection][populate][items][populate]=*&populate[ctaSection][populate]=*&populate[miniHeroSection][populate]=*`;
 
     return this.http
       .get<ServicePageResponseInterface>(url)
