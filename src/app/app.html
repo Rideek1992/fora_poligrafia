@@ -9,11 +9,11 @@
   <div class="footerSection">
     <app-footer></app-footer>
   </div>
-
-  @if (cookieBannerVisible === true) {
-    <app-cookie-popup (accept)="acceptCookies()" (reject)="rejectCookies()"></app-cookie-popup>
-  }
 }
 @if (isLoandingPage) {
   <router-outlet></router-outlet>
+}
+
+@if (cookieBannerVisible === true) {
+  <app-cookie-popup (accept)="acceptCookies()" (reject)="rejectCookies()"></app-cookie-popup>
 }
