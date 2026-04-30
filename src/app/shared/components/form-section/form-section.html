@@ -40,7 +40,6 @@
           type="email"
         />
       </div>
-
       <div class="formField">
         <label for="phone">telefon</label>
         <input
@@ -93,6 +92,14 @@
         </select>
       </div>
     </div>
+    <input
+      [(ngModel)]="formModel.companyName"
+      autocomplete="off"
+      class="hp-field"
+      name="companyName"
+      tabindex="-1"
+      type="text"
+    />
 
     <div class="checkboxField">
       <input

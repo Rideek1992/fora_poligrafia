@@ -24,6 +24,9 @@ export class FormSection {
     message: '',
     conversatrionElement: '',
     consentContactGiven: false,
+
+    companyName: '',
+    formStartedAt: Date.now(),
   };
 
   succesData = {
@@ -61,6 +64,9 @@ export class FormSection {
           conversatrionElement: this.formModel.conversatrionElement,
           consentContactGiven: this.formModel.consentContactGiven,
           consentContactVersion: this.consentContactVersion,
+
+          companyName: this.formModel.companyName,
+          formStartedAt: this.formModel.formStartedAt,
         };
 
         this.contentFormService.sendContactForm(payload).subscribe({
@@ -85,6 +91,9 @@ export class FormSection {
               message: '',
               conversatrionElement: '',
               consentContactGiven: false,
+
+              companyName: '',
+              formStartedAt: Date.now(),
             };
           },
           error: (error) => {
